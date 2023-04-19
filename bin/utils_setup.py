@@ -193,3 +193,9 @@ def fetch_url(url=None, auth=False, debuglevel=0, interactive=0):
         logger.debug("...fetching %s (%s), done." % (url, ["without authentication", "with authentication"][auth]))
 
     return res
+
+def is_dl_layer(layername):
+    if '-dl-' in layername or layername.endswith('-dl'):
+        return True
+    else:
+        return False
