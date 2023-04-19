@@ -937,10 +937,18 @@ class Setup():
         src = open(src, 'r')
         dst = open(dst, 'w')
 
+        wrlinux_src_dl_added = False
         for line in src:
             if '####LAYERS####' in line:
                 for l in self.replacement['layers']:
-                    dst.write(line.replace('####LAYERS####', '##OEROOT##/%s' % (l)))
+                    # Check and replace dl layers with wrlinux-src-dl
+                    layername = os.path.basename(l)
+                    if (layername.endswith('-dl') or '-dl-' in layername):
+                        if not wrlinux_src_dl_added:
+                            dst.write(line.replace('####LAYERS####', '##OEROOT##/%s' % ('layers/wrlinux-src-dl')))
+                            wrlinux_src_dl_added = True
+                    else:
+                        dst.write(line.replace('####LAYERS####', '##OEROOT##/%s' % (l)))
                 for rl in self.remote_layers:
                     dst.write(line.replace('####LAYERS####', '##OEROOT##/%s' % (rl.get('path'))))
                 for ll in self.local_layers:
@@ -1139,7 +1147,10 @@ class Setup():
                     url = vcs_url[len(self.remotes[remote]):]
                     url = url.strip('/')
 
-                    path = 'layers/' + "".join(url.split('/')[-1:])
+                    if layer['name'].endswith('-dl') or '-dl-' in layer['name']:
+                        path = 'layers/wrlinux-src-dl/' + "".join(vcs_url.split('/')[-1:])
+                    else:
+                        path = 'layers/' + "".join(url.split('/')[-1:])
 
                     entry = {
                            'name' : layer['name'],
