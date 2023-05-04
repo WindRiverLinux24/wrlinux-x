@@ -46,7 +46,6 @@
     <project name="external/yocto/github.com.thkukuk.libnsl" remote="base" path="layers/oe-core-dl-4.1/git/github.com.thkukuk.libnsl" bare="True"/>
     <project name="external/yocto/git.savannah.gnu.org.git.config" remote="base" path="layers/oe-core-dl-4.1/git/git.savannah.gnu.org.git.config.git" bare="True"/>
     <project name="external/yocto/gitlab.com.psmisc.psmisc" remote="base" path="layers/oe-core-dl-4.1/git/gitlab.com.psmisc.psmisc.git" bare="True"/>
-    <project name="external/yocto/github.com.Masterminds.glide" remote="base" path="layers/oe-core-dl-4.1/git/github.com.Masterminds.glide" bare="True"/>
     <project name="external/yocto/github.com.iputils.iputils" remote="base" path="layers/oe-core-dl-4.1/git/github.com.iputils.iputils" bare="True"/>
     <project name="external/yocto/github.com.ninja-build.ninja" remote="base" path="layers/oe-core-dl-4.1/git/github.com.ninja-build.ninja.git" bare="True"/>
     <project name="external/yocto/github.com.p11-glue.p11-kit" remote="base" path="layers/oe-core-dl-4.1/git/github.com.p11-glue.p11-kit" bare="True"/>
