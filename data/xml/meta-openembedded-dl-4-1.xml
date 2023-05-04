@@ -149,3 +149,4 @@
     <project name="external/yocto/git.kernel.org.pub.scm.linux.kernel.git.dhowells.keyutils" remote="base" path="layers/meta-openembedded-dl-4.1/git/git.kernel.org.pub.scm.linux.kernel.git.dhowells.keyutils.git" bare="True"/>
     <project name="external/yocto/github.com.ARMmbed.mbedtls" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.ARMmbed.mbedtls.git" bare="True"/>
     <project name="external/yocto/github.com.ofalk.libdnet" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.ofalk.libdnet.git" bare="True"/>
+    <project name="external/yocto/gitlab.freedesktop.org.polkit.polkit" remote="base" path="layers/meta-openembedded-dl-4.1/git/gitlab.freedesktop.org.polkit.polkit.git" bare="True"/>
