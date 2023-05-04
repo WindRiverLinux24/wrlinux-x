@@ -145,7 +145,6 @@
     <project name="external/yocto/github.com.wkz.phytool" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.wkz.phytool.git" bare="True"/>
     <project name="external/yocto/github.com.libbpf.libbpf" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.libbpf.libbpf.git" bare="True"/>
     <project name="external/yocto/github.com.dsoprea.pyinotify" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.dsoprea.pyinotify.git" bare="True"/>
-    <project name="external/yocto/github.com.freedesktop.polkit" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.freedesktop.polkit.git" bare="True"/>
     <project name="external/yocto/github.com.benhoyt.inih" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.benhoyt.inih.git" bare="True"/>
     <project name="external/yocto/git.kernel.org.pub.scm.linux.kernel.git.dhowells.keyutils" remote="base" path="layers/meta-openembedded-dl-4.1/git/git.kernel.org.pub.scm.linux.kernel.git.dhowells.keyutils.git" bare="True"/>
     <project name="external/yocto/github.com.ARMmbed.mbedtls" remote="base" path="layers/meta-openembedded-dl-4.1/git/github.com.ARMmbed.mbedtls.git" bare="True"/>
