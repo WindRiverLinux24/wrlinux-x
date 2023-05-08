@@ -166,3 +166,4 @@
     <project name="external/yocto/github.com.flatpak.libportal" remote="base" path="layers/oe-core-dl-4.1/git/github.com.flatpak.libportal.git" bare="True"/>
     <project name="external/yocto/github.com.aehs29.baremetal-helloqemu" remote="base" path="layers/oe-core-dl-4.1/git/github.com.aehs29.baremetal-helloqemu.git" bare="True"/>
     <project name="external/yocto/gitlab.com.rossburton.python-unittest-automake-output" remote="base" path="layers/oe-core-dl-4.1/git/gitlab.com.rossburton.python-unittest-automake-output" bare="True"/>
+    <project name="external/yocto/github.com.NetworkConfiguration.dhcpcd" remote="base" path="layers/oe-core-dl-4.1/git/github.com.NetworkConfiguration.dhcpcd" bare="True"/>
