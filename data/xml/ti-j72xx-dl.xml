@@ -1,1 +1,0 @@
-    <project name="external/yocto/github.com.dentonw.devil" remote="base" path="layers/ti-j72xx-dl/git/github.com.dentonw.devil.git" bare="True"/>
