@@ -62,9 +62,9 @@ def run_cmd(cmd, environment=None, cwd=None, log=1, expected_ret=0, err=b'GitErr
                 for key in environment.keys():
                     logger.to_file('%20s = %s' % (key, repr(environment[key])))
             if log != 2:
-                logger.critical('cmd "%s" returned %d' % (cmd, ret.returncode))
+                logger.critical('cmd "%s" returned %d' % (' '.join(cmd), ret.returncode))
             else:
-                logger.debug('cmd "%s" returned %d' % (cmd, ret.returncode))
+                logger.debug('cmd "%s" returned %d' % (' '.join(cmd), ret.returncode))
 
         msg = ''
         if log:
