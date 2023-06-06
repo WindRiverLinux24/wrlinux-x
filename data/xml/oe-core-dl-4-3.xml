@@ -169,3 +169,4 @@
     <project name="external/yocto/github.com.di.calver" remote="base" path="layers/oe-core-dl-4.3/git/github.com.di.calver" bare="True"/>
     <project name="external/yocto/git.kernel.org.pub.scm.libs.libtrace.libtraceevent" remote="base" path="layers/oe-core-dl-4.3/git/git.kernel.org.pub.scm.libs.libtrace.libtraceevent.git" bare="True"/>
     <project name="external/yocto/anongit.freedesktop.org.git.xorg.driver.xf86-video-intel" remote="base" path="layers/oe-core-dl-4.3/git/anongit.freedesktop.org.git.xorg.driver.xf86-video-intel" bare="True"/>
+    <project name="external/yocto/github.com.google.wycheproof" remote="base" path="layers/oe-core-dl-4.3/git/github.com.google.wycheproof.git" bare="True"/>
