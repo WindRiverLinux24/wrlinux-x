@@ -163,7 +163,6 @@
     <project name="external/yocto/github.com.anholt.libepoxy" remote="base" path="layers/oe-core-dl-4.3/git/github.com.anholt.libepoxy" bare="True"/>
     <project name="external/yocto/gitlab.freedesktop.org.slirp.libslirp" remote="base" path="layers/oe-core-dl-4.3/git/gitlab.freedesktop.org.slirp.libslirp.git" bare="True"/>
     <project name="external/yocto/github.com.flatpak.libportal" remote="base" path="layers/oe-core-dl-4.3/git/github.com.flatpak.libportal.git" bare="True"/>
-    <project name="external/yocto/github.com.aehs29.baremetal-helloqemu" remote="base" path="layers/oe-core-dl-4.3/git/github.com.aehs29.baremetal-helloqemu.git" bare="True"/>
     <project name="external/yocto/gitlab.com.rossburton.python-unittest-automake-output" remote="base" path="layers/oe-core-dl-4.3/git/gitlab.com.rossburton.python-unittest-automake-output" bare="True"/>
     <project name="external/yocto/github.com.NetworkConfiguration.dhcpcd" remote="base" path="layers/oe-core-dl-4.3/git/github.com.NetworkConfiguration.dhcpcd" bare="True"/>
     <project name="external/yocto/github.com.di.calver" remote="base" path="layers/oe-core-dl-4.3/git/github.com.di.calver" bare="True"/>
