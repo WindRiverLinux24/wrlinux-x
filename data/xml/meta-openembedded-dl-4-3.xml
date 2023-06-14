@@ -106,7 +106,6 @@
     <project name="external/yocto/github.com.USCiLab.cereal" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.USCiLab.cereal.git" bare="True"/>
     <project name="external/yocto/github.com.tianon.gosu" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.tianon.gosu.git" bare="True"/>
     <project name="external/yocto/git.zx2c4.com.wireguard-tools" remote="base" path="layers/meta-openembedded-dl-4.3/git/git.zx2c4.com.wireguard-tools" bare="True"/>
-    <project name="external/yocto/github.com.GENIVI.dlt-daemon" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.GENIVI.dlt-daemon.git" bare="True"/>
     <project name="external/yocto/github.com.fmtlib.fmt" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.fmtlib.fmt" bare="True"/>
     <project name="external/yocto/github.com.ndevilla.iniparser" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.ndevilla.iniparser.git" bare="True"/>
     <project name="external/yocto/github.com.wxWidgets.wxWidgets" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.wxWidgets.wxWidgets.git" bare="True"/>
