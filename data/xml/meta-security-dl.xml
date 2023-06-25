@@ -1,0 +1,1 @@
+    <project name="external/yocto/github.com.ComplianceAsCode.content" remote="base" path="layers/meta-security-dl/git/github.com.ComplianceAsCode.content.git" bare="True"/>
