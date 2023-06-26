@@ -1,1 +1,2 @@
     <project name="external/yocto/github.com.ComplianceAsCode.content" remote="base" path="layers/meta-security-dl/git/github.com.ComplianceAsCode.content.git" bare="True"/>
+    <project name="external/yocto/github.com.OpenSCAP.openscap" remote="base" path="layers/meta-security-dl/git/github.com.OpenSCAP.openscap.git" bare="True"/>
