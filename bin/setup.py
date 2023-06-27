@@ -1080,7 +1080,7 @@ class Setup():
     def update_manifest(self):
         logger.debug('Starting')
 
-        fxml = open(os.path.join(self.project_dir, self.default_xml), 'w')
+        fxml = open(os.path.join(self.project_dir, self.default_xml), 'w+')
         fxml.write('<manifest>\n')
 
         remote = 'base'
@@ -1114,13 +1114,25 @@ class Setup():
 
         def add_xml(name, url, remote, path, revision):
             # xmlfile is included after the entry and is completely standalone
-            xmlfile = os.path.join(self.xml_dir, '%s.xml' % (name))
-            logger.debug('Looking for %s' % (xmlfile))
-            if os.path.exists(xmlfile):
-                fbase = open(xmlfile, 'r')
-                for line in fbase:
-                    fxml.write(line)
-                fbase.close()
+            xmlfile_list = [os.path.join(self.xml_dir, '%s.xml' % (name))]
+
+            # If a recipe layer only uses git based sources, then the download
+            # layer (-dl) is empty which contains no useful data, such a layer
+            # doesn't have to be in layerindex, just check and add the git
+            # sources here.
+            if self.dl_layers != -1 and not utils_setup.is_dl_layer(name):
+                xmlfile_dl = os.path.join(self.xml_dir, '%s-dl.xml' % (os.path.basename(url)))
+                xmlfile_list.append(xmlfile_dl)
+            fxml.seek(0)
+            fxml_lines = fxml.readlines()
+            for xmlfile in xmlfile_list:
+                logger.debug('Looking for %s' % (xmlfile))
+                if os.path.exists(xmlfile):
+                    fbase = open(xmlfile, 'r')
+                    for line in fbase:
+                        if not line in fxml_lines:
+                            fxml.write(line)
+                    fbase.close()
 
         def write_xml(name, url, remote, path, revision):
             open_xml_tag(name, url, remote, path, revision)
