@@ -149,5 +149,6 @@
     <project name="external/yocto/github.com.ofalk.libdnet" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.ofalk.libdnet.git" bare="True"/>
     <project name="external/yocto/gitlab.freedesktop.org.polkit.polkit" remote="base" path="layers/meta-openembedded-dl-4.3/git/gitlab.freedesktop.org.polkit.polkit.git" bare="True"/>
     <project name="external/yocto/codeberg.org.ipmitool.ipmitool" remote="base" path="layers/meta-openembedded-dl-4.3/git/codeberg.org.ipmitool.ipmitool" bare="True"/>
+    <project name="external/yocto/github.com.Reference-LAPACK.lapack" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.Reference-LAPACK.lapack.git" bare="True"/>
     <project name="external/yocto/github.com.COVESA.dlt-daemon" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.COVESA.dlt-daemon.git" bare="True"/>
     <project name="external/yocto/git.kernel.org.pub.scm.devel.pahole.pahole" remote="base" path="layers/meta-openembedded-dl-4.3/git/git.kernel.org.pub.scm.devel.pahole.pahole.git" bare="True"/>
