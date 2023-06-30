@@ -1035,6 +1035,8 @@ class Setup():
                 url_cache[vcs_url].append((lindex, layerBranch['branch']))
 
         # Serialize the information for each of the layers (and their sublayers)
+        found_oe_core_dl = False
+        extra_dl_xmls = set()
         for vcs_url in url_cache:
             for (lindex, branchid) in url_cache[vcs_url]:
                 for layer in lindex['layerItems']:
@@ -1052,6 +1054,13 @@ class Setup():
                             os.makedirs(destdir, exist_ok=True)
                             shutil.copy(srcfile, destdir)
 
+                        # Check whether need copy the xml files which are not in layerindex
+                        if 'oe-core-dl' in name:
+                            found_oe_core_dl = True
+                        srcfile_dl = os.path.join(self.xml_dir, '%s-dl.xml' % (os.path.basename(layer['vcs_url'])))
+                        if os.path.exists(srcfile_dl) and not utils_setup.is_dl_layer(name):
+                            extra_dl_xmls.add(srcfile_dl)
+
                         # Special processing for the openembedded-core layer
                         if name == 'openembedded-core':
                             srcfile = os.path.join(self.xml_dir, 'bitbake.inc')
@@ -1062,6 +1071,12 @@ class Setup():
                             if os.path.exists(srcfile):
                                 os.makedirs(destdir, exist_ok=True)
                                 shutil.copy(srcfile, destdir)
+
+        # Only copy extra dl xml files when found oe-core-dl
+        if found_oe_core_dl and extra_dl_xmls:
+            destdir = os.path.join(path, 'xml')
+            for srcfile_dl in extra_dl_xmls:
+                shutil.copy(srcfile_dl, destdir)
 
         # git add file.
         cmd = [self.tools['git'], 'add', '-A', '.']

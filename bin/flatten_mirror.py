@@ -334,6 +334,8 @@ def main():
         logger.info('Discovered base_branch: %s (%s)' % (base_branch, branchid))
         logger.info('Discovered bitbake_branch: %s' % bitbake_branch)
 
+        found_oe_core_dl = False
+        extra_dl_xmls = set()
         for layer in lindex['layerItems']:
             logger.info('Processing layer %s...' % layer['name'])
 
@@ -433,6 +435,23 @@ def main():
                         if name not in processed_list:
                             push_or_copy(layer['name'], name, dst)
                             processed_list.append(name)
+
+            if 'oe-core-dl' in layer['name']:
+                found_oe_core_dl = True
+
+            srcfile_dl = os.path.join(mirror_path, 'xml', '%s-dl.xml' % (os.path.basename(layer['vcs_url'])))
+            if os.path.exists(srcfile_dl) and not utils_setup.is_dl_layer(layer['name']):
+                extra_dl_xmls.add(srcfile_dl)
+
+
+        if found_oe_core_dl and extra_dl_xmls:
+            for srcfile_dl in extra_dl_xmls:
+                xml_dst = xml_dest_dir(xml_dir, os.path.basename(srcfile_dl))
+                for name in transform_xml(srcfile_dl, xml_dst):
+                    dst = os.path.join(dest, os.path.basename(name))
+                    if name not in processed_list:
+                        push_or_copy(layer['name'], name, dst)
+                        processed_list.append(name)
 
         # dst_base_mirror may not exist if we're subsetting...
         os.makedirs(dst_base_mirror, exist_ok=True)
