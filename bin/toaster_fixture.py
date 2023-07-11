@@ -260,7 +260,7 @@ def add_dependent_layers(add_layer,include_optional):
         if layer_branch_id == dep['layerbranch']:
             dep_layer=find_id2layer(dep["dependency"])
             if None == dep_layer:
-                print("ERROR: Index to dep layer '%d' not found" % dep_id)
+                print("ERROR: Index to dep layer '%s' not found" % dep)
             else:
                 add_dependent_layers(dep_layer,include_optional)
 
