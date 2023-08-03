@@ -243,7 +243,11 @@ class Layer_Index():
         for i, layerBranch in enumerate(lindex['layerBranches']):
             layerids.append("%s" % layerBranch['layer'])
 
-        lindex['layerItems'] = _get_json_response(lindex['apilinks']['layerItems'])
+        filter = ""
+        if branches:
+            filter = "?filter=layerbranch__branch__name:%s" \
+                     % "OR".join(branches)
+        lindex['layerItems'] = _get_json_response(lindex['apilinks']['layerItems'] + filter)
 
         filter = ""
         if branches:
