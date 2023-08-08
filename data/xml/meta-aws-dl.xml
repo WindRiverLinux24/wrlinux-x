@@ -1,0 +1,6 @@
+    <project name="external/yocto/github.com.boto.botocore" remote="base" path="layers/meta-aws-dl/git/github.com.boto.botocore.git" bare="True"/>
+    <project name="external/yocto/github.com.aws.aws-cli" remote="base" path="layers/meta-aws-dl/git/github.com.aws.aws-cli.git" bare="True"/>
+    <project name="external/yocto/github.com.awslabs.aws-c-sdkutils" remote="base" path="layers/meta-aws-dl/git/github.com.awslabs.aws-c-sdkutils.git" bare="True"/>
+    <project name="external/yocto/github.com.boto.boto3" remote="base" path="layers/meta-aws-dl/git/github.com.boto.boto3.git" bare="True"/>
+    <project name="external/yocto/github.com.aws.aws-iot-device-sdk-python-v2" remote="base" path="layers/meta-aws-dl/git/github.com.aws.aws-iot-device-sdk-python-v2.git" bare="True"/>
+    <project name="external/yocto/github.com.boto.s3transfer" remote="base" path="layers/meta-aws-dl/git/github.com.boto.s3transfer.git" bare="True"/>
