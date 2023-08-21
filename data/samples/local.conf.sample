@@ -296,19 +296,13 @@ BB_DISKMON_DIRS ??= "\
 # Make sstate can be downloaded from network when BB_NO_NETWORK is set to 1
 #SSTATE_MIRROR_ALLOW_NETWORK ?= "1"
 
-# Select the default init manager
+# Select the default init manager, and includes config file from oe-core
+# conf/distro/include/init-manager-${INIT_MANAGER}.inc
 # use systemd as the default init manager
-DISTRO_FEATURES:append = " systemd"
-DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
-VIRTUAL-RUNTIME_init_manager = "systemd"
-VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
-KERNEL_FEATURES:append = " cfg/systemd.scc"
+INIT_MANAGER = "systemd"
 
 # use sysvinit as the default init manager
-#DISTRO_FEATURES:append = " sysvinit"
-#DISTRO_FEATURES_BACKFILL_CONSIDERED += "systemd"
-#VIRTUAL-RUNTIME_init_manager = "sysvinit"
-#VIRTUAL-RUNTIME_initscripts = "initscripts"
+#INIT_MANAGER = "sysvinit"
 
 #
 # Qemu configuration
