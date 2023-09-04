@@ -61,14 +61,14 @@ DEFAULT_LAYER_COMPAT_TAG = "wrl"
 # required host tools to build out project
 # Do not edit this manually, it is updated automatically.
 REQUIRED_HOSTTOOLS = """
-    [ ar as awk basename bash bzip2 cat chgrp chmod chown chrpath
-    cmp comm cp cpio cpp cut date dd diff diffstat dirname du echo
-    egrep env expand expr false fgrep file find flock g++ gawk gcc
-    getconf getopt git grep gunzip gzip head hostname iconv id install
-    ld ldd ln ls lz4c make md5sum mkdir mkfifo mknod mktemp mv nm
-    objcopy objdump od patch perl pr printf ps pwd python3 pzstd ranlib
-    readelf readlink realpath rm rmdir rpcgen sed seq sh sha1sum sha224sum
-    sha256sum sha384sum sha512sum sleep sort split stat strings strip
-    tail tar tee test touch tr true uname uniq unzstd wc wget which
-    xargs zstd
+    [ ar as awk basename bash bunzip2 bzip2 cat chgrp chmod chown
+    chrpath cmp comm cp cpio cpp cut date dd diff diffstat dirname
+    du echo egrep env expand expr false fgrep file find flock g++
+    gawk gcc getconf getopt git grep gunzip gzip head hostname iconv
+    id install ld ldd ln ls lz4c make md5sum mkdir mkfifo mknod mktemp
+    mv nm objcopy objdump od patch perl pr printf ps pwd python3 pzstd
+    ranlib readelf readlink realpath rm rmdir rpcgen sed seq sh sha1sum
+    sha224sum sha256sum sha384sum sha512sum sleep sort split stat
+    strings strip tail tar tee test touch tr true uname uniq unzstd
+    wc wget which xargs zstd
 """
