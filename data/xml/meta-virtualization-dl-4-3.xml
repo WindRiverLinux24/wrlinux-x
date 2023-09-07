@@ -151,3 +151,28 @@
     <project name="external/overc/github.com.golang.net" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.golang.net" bare="True"/>
     <project name="external/yocto/github.com.magiconair.properties" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.magiconair.properties" bare="True"/>
     <project name="external/yocto/github.com.docker.compose" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.docker.compose" bare="True"/>
+    <project name="external/yocto/go.googlesource.com.exp" remote="base" path="layers/meta-virtualization-dl-4.3/git/go.googlesource.com.exp" bare="True"/>
+    <project name="external/yocto/go.googlesource.com.mod" remote="base" path="layers/meta-virtualization-dl-4.3/git/go.googlesource.com.mod" bare="True"/>
+    <project name="external/yocto/go.googlesource.com.tools" remote="base" path="layers/meta-virtualization-dl-4.3/git/go.googlesource.com.tools" bare="True"/>
+    <project name="external/yocto/github.com.go-logr.logr" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.go-logr.logr" bare="True"/>
+    <project name="external/yocto/github.com.go-logr.stdr" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.go-logr.stdr" bare="True"/>
+    <project name="external/yocto/github.com.tinylib.msgp" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.tinylib.msgp" bare="True"/>
+    <project name="external/yocto/github.com.lukechampine.blake3" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.lukechampine.blake3" bare="True"/>
+    <project name="external/yocto/github.com.darccio.mergo" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.darccio.mergo" bare="True"/>
+    <project name="external/yocto/github.com.philhofer.fwd" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.philhofer.fwd" bare="True"/>
+    <project name="external/yocto/github.com.open-telemetry.opentelemetry-go" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.open-telemetry.opentelemetry-go" bare="True"/>
+    <project name="external/yocto/github.com.djherbis.times" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.djherbis.times" bare="True"/>
+    <project name="external/yocto/github.com.yuchanns.srslog" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.yuchanns.srslog" bare="True"/>
+    <project name="external/yocto/github.com.square.go-jose" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.square.go-jose" bare="True"/>
+    <project name="external/yocto/github.com.microsoft.hcsshim" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.microsoft.hcsshim" bare="True"/>
+    <project name="external/yocto/github.com.spaolacci.murmur3" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.spaolacci.murmur3" bare="True"/>
+    <project name="external/yocto/github.com.microsoft.go-winio" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.microsoft.go-winio" bare="True"/>
+    <project name="external/yocto/github.com.coreos.go-iptables" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.coreos.go-iptables" bare="True"/>
+    <project name="external/yocto/github.com.frankban.quicktest" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.frankban.quicktest" bare="True"/>
+    <project name="external/yocto/github.com.fahedouch.go-logrotate" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.fahedouch.go-logrotate" bare="True"/>
+    <project name="external/yocto/github.com.awslabs.soci-snapshotter" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.awslabs.soci-snapshotter" bare="True"/>
+    <project name="external/yocto/github.com.AdaLogics.go-fuzz-headers" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.AdaLogics.go-fuzz-headers" bare="True"/>
+    <project name="external/yocto/github.com.fluent.fluent-logger-golang" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.fluent.fluent-logger-golang" bare="True"/>
+    <project name="external/yocto/github.com.AdamKorcz.go-118-fuzz-build" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.AdamKorcz.go-118-fuzz-build" bare="True"/>
+    <project name="external/yocto/github.com.containerd.nydus-snapshotter" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.containerd.nydus-snapshotter" bare="True"/>
+    <project name="external/yocto/github.com.containerd.accelerated-container-image" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.containerd.accelerated-container-image" bare="True"/>
