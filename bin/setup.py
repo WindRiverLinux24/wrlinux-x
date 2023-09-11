@@ -119,6 +119,9 @@ class Setup():
         # Default depth
         self.depth = None
 
+        # Default retry_fetches
+        self.retry_fetches = None
+
         # Default to NOT force-sync
         self.force_sync = None
 
@@ -1789,6 +1792,8 @@ class Setup():
         cmd = [repo, 'sync']
         # disable use of /clone.bundle on HTTP/HTTPS
         cmd.append('--no-clone-bundle')
+        if self.retry_fetches:
+            cmd.append(self.retry_fetches)
         if self.prune:
             cmd.append('--prune')
         if self.force_sync:
@@ -1819,14 +1824,18 @@ class Setup():
 
     def set_jobs(self, jobs):
         logger.debug('Setting jobs to %s' % jobs)
-        self.jobs = jobs
+        self.jobs = str(jobs)
 
     def set_depth(self, depth):
-        if int(depth) <= 1:
+        if depth <= 1:
             logger.info('repo depth %s is invalid, setting to 2' % depth)
-            depth = '2'
+            depth = 2
         logger.debug('Setting depth to %s' % depth)
         self.depth = '--depth=%s' % depth
+
+    def set_retry_fetches(self, retry_fetches):
+        logger.debug('Setting retry_fetches to %s' % retry_fetches)
+        self.retry_fetches = '--retry-fetches=%s' % retry_fetches
 
     def set_force_sync(self, sync):
         logger.debug('Setting force-sync to %s' % sync)

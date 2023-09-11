@@ -86,6 +86,11 @@ class Argparse_Setup:
                 self.setup.set_depth(parsed_args.repo_depth)
             del parsed_args.repo_depth
 
+        if (parsed_args.repo_retry_fetches):
+            if self.setup:
+                self.setup.set_retry_fetches(parsed_args.repo_retry_fetches)
+            del parsed_args.repo_retry_fetches
+
         if (parsed_args.repo_force_sync):
             if self.setup:
                 self.setup.set_force_sync(parsed_args.repo_force_sync)
@@ -246,8 +251,9 @@ class Argparse_Setup:
         self.repo_args.add_argument('-rv', '--repo-verbose', action='store_true', help='Disables use of --quiet with repo commands')
         if self.setup and self.setup.jobs:
             setup_jobs = '(default %s)' % (self.setup.jobs)
-        self.repo_args.add_argument('-rj', '--repo-jobs', metavar='JOBS', help='Sets repo project to fetch simultaneously %s' % (setup_jobs))
-        self.repo_args.add_argument('--repo-depth', metavar='DEPTH', help='Sets repo --depth; see repo init --help (note: if set, a value of >= 2 is required)')
+        self.repo_args.add_argument('-rj', '--repo-jobs', metavar='JOBS', type=int, help='Sets repo project to fetch simultaneously %s' % (setup_jobs))
+        self.repo_args.add_argument('--repo-depth', metavar='DEPTH', type=int, help='Sets repo --depth; see repo init --help (note: if set, a value of >= 2 is required)')
+        self.repo_args.add_argument('--repo-retry-fetches', metavar='RETRY', type=int, help='Set repo retry remote fetches times; see repo sync --help', default=5)
         self.repo_args.add_argument('--repo-force-sync', action='store_true', help='Sets repo --force-sync; see repo sync --help')
         self.repo_args.add_argument('--repo-no-fetch', help='Do all the setup but do not call repo sync', action="store_true")
         self.repo_args.add_argument('--repo-no-prune', help='When calling repo sync do not use --prune. May cause sync failures.', action="store_true")
