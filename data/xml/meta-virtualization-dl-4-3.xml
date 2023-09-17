@@ -32,7 +32,6 @@
     <project name="external/yocto/github.com.containers.fuse-overlayfs" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.containers.fuse-overlayfs.git" bare="True"/>
     <project name="external/yocto/github.com.lxc.lxc" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.lxc.lxc.git" bare="True"/>
     <project name="external/yocto/github.com.checkpoint-restore.criu" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.checkpoint-restore.criu.git" bare="True"/>
-    <project name="external/yocto/github.com.docker.docker" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.docker.docker.git" bare="True"/>
     <project name="external/yocto/github.com.docker.cli" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.docker.cli" bare="True"/>
     <project name="external/yocto/github.com.containerd.nerdctl" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.containerd.nerdctl.git" bare="True"/>
     <project name="external/yocto/github.com.Masterminds.semver" remote="base" path="layers/meta-virtualization-dl-4.3/git/github.com.Masterminds.semver" bare="True"/>
