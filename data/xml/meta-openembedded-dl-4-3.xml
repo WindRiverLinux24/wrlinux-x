@@ -155,3 +155,4 @@
     <project name="external/yocto/github.com.zowens.crc32c" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.zowens.crc32c" bare="True"/>
     <project name="external/yocto/github.com.jthornber.rio" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.jthornber.rio" bare="True"/>
     <project name="external/yocto/github.com.GENIVI.vsomeip" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.GENIVI.vsomeip.git" bare="True"/>
+    <project name="external/yocto/github.com.pybind.pybind11" remote="base" path="layers/meta-openembedded-dl-4.3/git/github.com.pybind.pybind11.git" bare="True"/>
