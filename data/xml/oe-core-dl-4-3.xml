@@ -178,3 +178,4 @@
     <project name="external/yocto/github.com.zeux.pugixml" remote="base" path="layers/oe-core-dl-4.3/git/github.com.zeux.pugixml.git" bare="True"/>
     <project name="external/yocto/github.com.lu-zero.cargo-c" remote="base" path="layers/oe-core-dl-4.3/git/github.com.lu-zero.cargo-c.git" bare="True"/>
     <project name="external/yocto/github.com.hughsie.libxmlb" remote="base" path="layers/oe-core-dl-4.3/git/github.com.hughsie.libxmlb.git" bare="True"/>
+    <project name="external/yocto/github.com.sysstat.sysstat" remote="base" path="layers/oe-core-dl-4.3/git/github.com.sysstat.sysstat.git" bare="True"/>
