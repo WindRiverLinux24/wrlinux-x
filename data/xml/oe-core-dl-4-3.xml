@@ -180,3 +180,4 @@
     <project name="external/yocto/github.com.hughsie.libxmlb" remote="base" path="layers/oe-core-dl-4.3/git/github.com.hughsie.libxmlb.git" bare="True"/>
     <project name="external/yocto/github.com.sysstat.sysstat" remote="base" path="layers/oe-core-dl-4.3/git/github.com.sysstat.sysstat.git" bare="True"/>
     <project name="external/yocto/github.com.gost-engine.engine" remote="base" path="layers/oe-core-dl-4.3/git/github.com.gost-engine.engine" bare="True"/>
+    <project name="external/yocto/github.com.provider-corner.libprov" remote="base" path="layers/oe-core-dl-4.3/git/github.com.provider-corner.libprov.git" bare="True"/>
