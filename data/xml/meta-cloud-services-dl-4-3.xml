@@ -1,0 +1,1 @@
+    <project name="external/yocto/github.com.ansible.ansible" remote="base" path="layers/wrlinux-src-dl/git/github.com.ansible.ansible.git" bare="True"/>
