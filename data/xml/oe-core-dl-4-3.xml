@@ -86,7 +86,6 @@
     <project name="external/yocto/github.com.pyca.cryptography" remote="base" path="layers/wrlinux-src-dl/git/github.com.pyca.cryptography.git" bare="True"/>
     <project name="external/yocto/boringssl.googlesource.com.boringssl" remote="base" path="layers/wrlinux-src-dl/git/boringssl.googlesource.com.boringssl" bare="True"/>
     <project name="external/yocto/github.com.kkos.oniguruma" remote="base" path="layers/wrlinux-src-dl/git/github.com.kkos.oniguruma.git" bare="True"/>
-    <project name="external/yocto/git.pengutronix.de.git.tools.libsocketcan" remote="base" path="layers/wrlinux-src-dl/git/git.pengutronix.de.git.tools.libsocketcan.git" bare="True"/>
     <project name="external/yocto/github.com.lathiat.nss-mdns" remote="base" path="layers/wrlinux-src-dl/git/github.com.lathiat.nss-mdns" bare="True"/>
     <project name="external/yocto/github.com.rhinstaller.efivar" remote="base" path="layers/wrlinux-src-dl/git/github.com.rhinstaller.efivar.git" bare="True"/>
     <project name="external/yocto/github.com.rhinstaller.efibootmgr" remote="base" path="layers/wrlinux-src-dl/git/github.com.rhinstaller.efibootmgr.git" bare="True"/>

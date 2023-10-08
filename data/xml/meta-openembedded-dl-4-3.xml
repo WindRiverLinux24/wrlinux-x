@@ -157,3 +157,4 @@
     <project name="external/yocto/github.com.GENIVI.vsomeip" remote="base" path="layers/wrlinux-src-dl/git/github.com.GENIVI.vsomeip.git" bare="True"/>
     <project name="external/yocto/github.com.pybind.pybind11" remote="base" path="layers/wrlinux-src-dl/git/github.com.pybind.pybind11.git" bare="True"/>
     <project name="external/yocto/github.com.linux-can.can-utils" remote="base" path="layers/wrlinux-src-dl/git/github.com.linux-can.can-utils.git" bare="True"/>
+    <project name="external/yocto/git.pengutronix.de.git.tools.libsocketcan" remote="base" path="layers/wrlinux-src-dl/git/git.pengutronix.de.git.tools.libsocketcan.git" bare="True"/>
