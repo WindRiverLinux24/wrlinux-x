@@ -122,7 +122,6 @@
     <project name="external/yocto/github.com.opensvc.multipath-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.opensvc.multipath-tools.git" bare="True"/>
     <project name="external/yocto/git.savannah.gnu.org.git.gnulib" remote="base" path="layers/wrlinux-src-dl/git/git.savannah.gnu.org.git.gnulib.git" bare="True"/>
     <project name="external/yocto/github.com.denix0.devmem2" remote="base" path="layers/wrlinux-src-dl/git/github.com.denix0.devmem2.git" bare="True"/>
-    <project name="external/yocto/github.com.stedolan.jq" remote="base" path="layers/wrlinux-src-dl/git/github.com.stedolan.jq.git" bare="True"/>
     <project name="external/yocto/github.com.libnet.libnet" remote="base" path="layers/wrlinux-src-dl/git/github.com.libnet.libnet.git" bare="True"/>
     <project name="external/yocto/git.linuxtv.org.v4l-utils" remote="base" path="layers/wrlinux-src-dl/git/git.linuxtv.org.v4l-utils.git" bare="True"/>
     <project name="external/yocto/gitlab.freedesktop.org.xorg.driver.xf86-video-ati" remote="base" path="layers/wrlinux-src-dl/git/gitlab.freedesktop.org.xorg.driver.xf86-video-ati.git" bare="True"/>
