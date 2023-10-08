@@ -178,3 +178,4 @@
     <project name="external/yocto/github.com.sysstat.sysstat" remote="base" path="layers/wrlinux-src-dl/git/github.com.sysstat.sysstat.git" bare="True"/>
     <project name="external/yocto/github.com.gost-engine.engine" remote="base" path="layers/wrlinux-src-dl/git/github.com.gost-engine.engine" bare="True"/>
     <project name="external/yocto/github.com.provider-corner.libprov" remote="base" path="layers/wrlinux-src-dl/git/github.com.provider-corner.libprov.git" bare="True"/>
+    <project name="external/yocto/github.com.llvm.llvm-project" remote="base" path="layers/wrlinux-src-dl/git/github.com.llvm.llvm-project.git" bare="True"/>
