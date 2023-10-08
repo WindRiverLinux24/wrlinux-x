@@ -2,7 +2,6 @@
     <project name="external/yocto/github.com.awslabs.aws-crt-cpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-crt-cpp.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-iot" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-iot.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-compression" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-compression.git" bare="True"/>
-    <project name="external/yocto/github.com.awslabs.aws-checksums" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-checksums.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-auth" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-auth.git" bare="True"/>
     <project name="external/yocto/github.com.Azure.umock-c" remote="base" path="layers/wrlinux-src-dl/git/github.com.Azure.umock-c.git" bare="True"/>
     <project name="external/yocto/github.com.Azure.azure-c-shared-utility" remote="base" path="layers/wrlinux-src-dl/git/github.com.Azure.azure-c-shared-utility.git" bare="True"/>
