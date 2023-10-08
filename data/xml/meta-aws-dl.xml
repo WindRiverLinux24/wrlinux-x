@@ -17,3 +17,4 @@
     <project name="external/yocto/github.com.awslabs.aws-crt-cpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-crt-cpp.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-auth" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-auth.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-compression" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-compression.git" bare="True"/>
+    <project name="external/yocto/github.com.awslabs.aws-c-event-stream" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-event-stream.git" bare="True"/>
