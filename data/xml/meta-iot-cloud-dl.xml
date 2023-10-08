@@ -9,7 +9,6 @@
     <project name="external/yocto/github.com.awslabs.aws-c-compression" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-compression.git" bare="True"/>
     <project name="external/yocto/github.com.aws.aws-iot-device-sdk-cpp-v2" remote="base" path="layers/wrlinux-src-dl/git/github.com.aws.aws-iot-device-sdk-cpp-v2.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-crt-python" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-crt-python.git" bare="True"/>
-    <project name="external/yocto/github.com.awslabs.aws-c-mqtt" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-mqtt.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-checksums" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-checksums.git" bare="True"/>
     <project name="external/yocto/github.com.aws.s2n-tls" remote="base" path="layers/wrlinux-src-dl/git/github.com.aws.s2n-tls.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-auth" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-auth.git" bare="True"/>
