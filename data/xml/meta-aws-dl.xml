@@ -8,3 +8,4 @@
     <project name="external/yocto/github.com.aws.s2n-tls" remote="base" path="layers/wrlinux-src-dl/git/github.com.aws.s2n-tls.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-http" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-http.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-io" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-io.git" bare="True"/>
+    <project name="external/yocto/github.com.awslabs.aws-c-s3" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-s3.git" bare="True"/>

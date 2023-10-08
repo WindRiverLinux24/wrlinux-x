@@ -1,6 +1,5 @@
     <project name="external/yocto/github.com.awslabs.aws-c-event-stream" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-event-stream.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-common" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-common.git" bare="True"/>
-    <project name="external/yocto/github.com.awslabs.aws-c-s3" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-s3.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-crt-cpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-crt-cpp.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-cal" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-cal.git" bare="True"/>
     <project name="external/yocto/github.com.awslabs.aws-c-iot" remote="base" path="layers/wrlinux-src-dl/git/github.com.awslabs.aws-c-iot.git" bare="True"/>
