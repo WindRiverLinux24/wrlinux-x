@@ -304,9 +304,9 @@ fi # if help -ne 1
 # We potentially have code that doesn't parse correctly with older versions 
 # of Python, and rather than fixing that and being eternally vigilant for 
 # any other new feature use, just check the version here.
-py_v36_check=$(python3 -c 'import sys; print(sys.version_info >= (3,6,0))')
+py_v36_check=$(python3 -c 'import sys; print(sys.version_info >= (3,8,0))')
 if [ "$py_v36_check" != "True" ]; then
-	echo >&2 "BitBake requires Python 3.6.0 or later as 'python3'"
+	echo >&2 "BitBake requires Python 3.8.0 or later as 'python3'"
 	exit 1
 fi
 unset py_v36_check
