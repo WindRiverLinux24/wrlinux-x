@@ -159,3 +159,4 @@
     <project name="external/yocto/git.pengutronix.de.git.tools.libsocketcan" remote="base" path="layers/wrlinux-src-dl/git/git.pengutronix.de.git.tools.libsocketcan.git" bare="True"/>
     <project name="external/yocto/github.com.open-source-parsers.jsoncpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.open-source-parsers.jsoncpp.git" bare="True"/>
     <project name="external/yocto/github.com.linux-nvme.libnvme" remote="base" path="layers/wrlinux-src-dl/git/github.com.linux-nvme.libnvme" bare="True"/>
+    <project name="external/yocto/github.com.nlohmann.json" remote="base" path="layers/wrlinux-src-dl/git/github.com.nlohmann.json.git" bare="True"/>
