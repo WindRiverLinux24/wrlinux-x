@@ -162,3 +162,4 @@
     <project name="external/yocto/github.com.nlohmann.json_test_data" remote="base" path="layers/wrlinux-src-dl/git/github.com.nlohmann.json_test_data.git" bare="True"/>
     <project name="external/yocto/github.com.envoyproxy.protoc-gen-validate" remote="base" path="layers/wrlinux-src-dl/git/github.com.envoyproxy.protoc-gen-validate.git" bare="True"/>
     <project name="external/yocto/github.com.kward.shunit2" remote="base" path="layers/wrlinux-src-dl/git/github.com.kward.shunit2.git" bare="True"/>
+    <project name="external/yocto/github.com.storaged-project.libbytesize" remote="base" path="layers/wrlinux-src-dl/git/github.com.storaged-project.libbytesize" bare="True"/>
