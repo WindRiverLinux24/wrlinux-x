@@ -180,3 +180,4 @@
     <project name="external/yocto/github.com.provider-corner.libprov" remote="base" path="layers/wrlinux-src-dl/git/github.com.provider-corner.libprov.git" bare="True"/>
     <project name="external/yocto/github.com.llvm.llvm-project" remote="base" path="layers/wrlinux-src-dl/git/github.com.llvm.llvm-project.git" bare="True"/>
     <project name="external/yocto/github.com.ibm-s390-linux.s390-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.ibm-s390-linux.s390-tools" bare="True"/>
+    <project name="external/yocto/github.com.KhronosGroup.Vulkan-Utility-Libraries" remote="base" path="layers/wrlinux-src-dl/git/github.com.KhronosGroup.Vulkan-Utility-Libraries.git" bare="True"/>
