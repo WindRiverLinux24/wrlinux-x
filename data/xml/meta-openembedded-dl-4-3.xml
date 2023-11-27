@@ -32,7 +32,6 @@
     <project name="external/yocto/github.com.TigerVNC.tigervnc" remote="base" path="layers/wrlinux-src-dl/git/github.com.TigerVNC.tigervnc.git" bare="True"/>
     <project name="external/yocto/github.com.abrt.satyr" remote="base" path="layers/wrlinux-src-dl/git/github.com.abrt.satyr.git" bare="True"/>
     <project name="external/yocto/github.com.abrt.libreport" remote="base" path="layers/wrlinux-src-dl/git/github.com.abrt.libreport.git" bare="True"/>
-    <project name="external/yocto/github.com.rhinstaller.libbytesize" remote="base" path="layers/wrlinux-src-dl/git/github.com.rhinstaller.libbytesize" bare="True"/>
     <project name="external/yocto/github.com.rhinstaller.isomd5sum" remote="base" path="layers/wrlinux-src-dl/git/github.com.rhinstaller.isomd5sum.git" bare="True"/>
     <project name="external/yocto/git.code.sf.net.p.tclap.code" remote="base" path="layers/wrlinux-src-dl/git/git.code.sf.net.p.tclap.code" bare="True"/>
     <project name="external/yocto/github.com.gperftools.gperftools" remote="base" path="layers/wrlinux-src-dl/git/github.com.gperftools.gperftools.git" bare="True"/>
