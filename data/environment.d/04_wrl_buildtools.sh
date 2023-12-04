@@ -28,6 +28,12 @@ BUILDTOOLS="${BUILDTOOLS:-bin/buildtools}"
 # Arch of the SDK to load
 SDKARCH=${SDKARCH:-$(uname -m)}
 
+# buildtools is only available for x86_64
+if [ "$SDKARCH" != "x86_64" ]; then
+    echo "WARNING: buildtools is disabled for $SDKARCH" >&2
+    return 0
+fi
+
 setup_add_arg --buildtools-branch BUILDTOOLSBRANCH keep
 
 setup_add_arg --buildtools-type BUILDTOOLS_TYPE keep
