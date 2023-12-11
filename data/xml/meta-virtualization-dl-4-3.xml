@@ -257,3 +257,4 @@
     <project name="external/yocto/github.com.grpc-ecosystem.go-grpc-middleware" remote="base" path="layers/wrlinux-src-dl/git/github.com.grpc-ecosystem.go-grpc-middleware" bare="True"/>
     <project name="external/yocto/github.com.secure-systems-lab.go-securesystemslib" remote="base" path="layers/wrlinux-src-dl/git/github.com.secure-systems-lab.go-securesystemslib" bare="True"/>
     <project name="external/yocto/github.com.open-telemetry.opentelemetry-go-contrib" remote="base" path="layers/wrlinux-src-dl/git/github.com.open-telemetry.opentelemetry-go-contrib" bare="True"/>
+    <project name="external/yocto/github.com.adrg.xdg" remote="base" path="layers/wrlinux-src-dl/git/github.com.adrg.xdg" bare="True"/>
