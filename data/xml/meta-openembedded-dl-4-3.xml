@@ -123,7 +123,6 @@
     <project name="external/yocto/github.com.denix0.devmem2" remote="base" path="layers/wrlinux-src-dl/git/github.com.denix0.devmem2.git" bare="True"/>
     <project name="external/yocto/github.com.libnet.libnet" remote="base" path="layers/wrlinux-src-dl/git/github.com.libnet.libnet.git" bare="True"/>
     <project name="external/yocto/git.linuxtv.org.v4l-utils" remote="base" path="layers/wrlinux-src-dl/git/git.linuxtv.org.v4l-utils.git" bare="True"/>
-    <project name="external/yocto/gitlab.freedesktop.org.xorg.driver.xf86-video-ati" remote="base" path="layers/wrlinux-src-dl/git/gitlab.freedesktop.org.xorg.driver.xf86-video-ati.git" bare="True"/>
     <project name="external/yocto/github.com.blueman-project.blueman" remote="base" path="layers/wrlinux-src-dl/git/github.com.blueman-project.blueman.git" bare="True"/>
     <project name="external/yocto/github.com.FRRouting.frr" remote="base" path="layers/wrlinux-src-dl/git/github.com.FRRouting.frr.git" bare="True"/>
     <project name="external/yocto/salsa.debian.org.debian.ifenslave" remote="base" path="layers/wrlinux-src-dl/git/salsa.debian.org.debian.ifenslave.git" bare="True"/>
