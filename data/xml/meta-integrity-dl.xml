@@ -1,2 +1,0 @@
-    <project name="external/yocto/git.code.sf.net.p.linux-ima.ima-evm-utils" remote="base" path="layers/wrlinux-src-dl/git/git.code.sf.net.p.linux-ima.ima-evm-utils.git" bare="True"/>
-    <project name="external/yocto/github.com.mgerstner.ima-inspect" remote="base" path="layers/wrlinux-src-dl/git/github.com.mgerstner.ima-inspect.git" bare="True"/>

@@ -1,3 +1,0 @@
-    <project name="external/yocto/github.com.jiazhang0.libsign" remote="base" path="layers/wrlinux-src-dl/git/github.com.jiazhang0.libsign.git" bare="True"/>
-    <project name="external/yocto/git.kernel.org.pub.scm.linux.kernel.git.jejb.sbsigntools" remote="base" path="layers/wrlinux-src-dl/git/git.kernel.org.pub.scm.linux.kernel.git.jejb.sbsigntools.git" bare="True"/>
-    <project name="external/yocto/github.com.rustyrussell.ccan" remote="base" path="layers/wrlinux-src-dl/git/github.com.rustyrussell.ccan.git" bare="True"/>

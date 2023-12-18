@@ -1,1 +1,0 @@
-    <project name="external/yocto/github.com.archiecobbs.mtree-port" remote="base" path="layers/wrlinux-src-dl/git/github.com.archiecobbs.mtree-port.git" bare="True"/>
