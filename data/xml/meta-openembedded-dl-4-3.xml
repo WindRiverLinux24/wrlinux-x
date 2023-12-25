@@ -164,3 +164,4 @@
     <project name="external/yocto/github.com.storaged-project.libbytesize" remote="base" path="layers/wrlinux-src-dl/git/github.com.storaged-project.libbytesize" bare="True"/>
     <project name="external/yocto/github.com.Tomas-M.iotop" remote="base" path="layers/wrlinux-src-dl/git/github.com.Tomas-M.iotop.git" bare="True"/>
     <project name="external/yocto/github.com.libpwquality.libpwquality" remote="base" path="layers/wrlinux-src-dl/git/github.com.libpwquality.libpwquality" bare="True"/>
+    <project name="external/yocto/github.com.Mbed-TLS.mbedtls" remote="base" path="layers/wrlinux-src-dl/git/github.com.Mbed-TLS.mbedtls.git" bare="True"/>
