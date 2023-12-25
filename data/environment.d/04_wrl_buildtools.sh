@@ -44,6 +44,69 @@ setup_export_func buildtools_export
 
 . ${BASEDIR}/data/environment.d/setup_utils
 
+USE_BUILDTOOLS_CERT=false
+
+BINTOOLS_SSL_DIR="/sysroots/x86_64-wrlinuxsdk-linux/usr/share/ca-certificates/mozilla"
+BINTOOLS_SSL_CERT="/sysroots/x86_64-wrlinuxsdk-linux/etc/ssl/certs/ca-certificates.crt"
+
+CERT_SUFFIX=".buildtools"
+
+# linking buildtools cert to host cert store, only handle current
+# supported distro
+link_host_cert_store(){
+	capath=$1
+	cafile=$2
+	if [ ! -e "$cafile$CERT_SUFFIX" ]; then
+		linked=false
+		#fedora like distro
+		if [ -d /etc/pki/tls/certs ] && [ -e /etc/pki/tls/certs/ca-bundle.crt ]; then
+			mv "$cafile" "$cafile$CERT_SUFFIX"
+			mv "$capath" "$capath$CERT_SUFFIX"
+			ln -sf /etc/pki/tls/certs "$capath"
+			ln -sf /etc/pki/tls/certs/ca-bundle.crt "$cafile"
+			linked=true
+		#debian like distro
+		elif [ -d /etc/ssl/certs ] && [ -e /etc/ssl/certs/ca-certificates.crt ]; then
+			mv "$cafile" "$cafile$CERT_SUFFIX"
+			mv "$capath" "$capath$CERT_SUFFIX"
+			ln -sf /etc/ssl/certs "$capath"
+			ln -sf /etc/ssl/certs/ca-certificates.crt "$cafile"
+			linked=true
+		#opensuse
+		elif [ -d /etc/ssl/certs ] && [ -e /etc/ssl/ca-bundle.pem ];then
+			mv "$cafile" "$cafile$CERT_SUFFIX"
+			mv "$capath" "$capath$CERT_SUFFIX"
+			ln -sf /etc/ssl/certs "$capath"
+			ln -sf /etc/ssl/ca-bundle.pem "$cafile"
+			linked=true
+		else
+			echo "Valid host cert not found, still using buildtools cert"
+		fi
+		if [ "$linked" = "true" ]; then
+			OPENSSL_ENVFILE="${BUILDTOOLS}/sysroots/x86_64-wrlinuxsdk-linux/environment-setup.d/openssl.sh"
+			if [ -f ${OPENSSL_ENVFILE} ]; then
+				sed -i -e "/SSL_CERT_DIR/d" ${OPENSSL_ENVFILE}
+				sed -i -e "/SSL_CERT_FILE/d" ${OPENSSL_ENVFILE}
+				echo "export SSL_CERT_FILE=\$OECORE_NATIVE_SYSROOT/etc/ssl/certs/ca-certificates.crt" >> ${OPENSSL_ENVFILE}
+				echo "export SSL_CERT_DIR=\$OECORE_NATIVE_SYSROOT/usr/share/ca-certificates/mozilla" >> ${OPENSSL_ENVFILE}
+			fi
+		fi
+	fi
+}
+
+# restore host certs store to buildtools cert
+restore_buildtools_cert() {
+	capath=$1
+	cafile=$2
+	if [ -f "$cafile$CERT_SUFFIX" ]; then
+		echo "Restoring host certs to buildtools cert"
+		rm -rf "$capath"
+		rm -rf "$cafile"
+		mv "$cafile$CERT_SUFFIX" "$cafile"
+		mv "$capath$CERT_SUFFIX" "$capath"
+	fi
+}
+
 buildtools_setup() {
 	if [ -z "${BUILDTOOLSBRANCH}" ]; then
 		BUILDTOOLSBRANCH="${BASEBRANCH}"
@@ -265,6 +328,12 @@ buildtools_setup() {
 		echo "Error unable to load buildtools environment-setup file." >&2
 		return 1
 	fi
+    if [ "$USE_BUILDTOOLS_CERT" = "false" ]; then
+        echo "Linking buildtools cert to host cert store."
+        link_host_cert_store ${BUILDTOOLS}${BINTOOLS_SSL_DIR} ${BUILDTOOLS}${BINTOOLS_SSL_CERT}
+    else
+        restore_buildtools_cert ${BUILDTOOLS}${BINTOOLS_SSL_DIR} ${BUILDTOOLS}${BINTOOLS_SSL_CERT}
+    fi
 	. "${ENVIRON}"
 	if [ $? -ne 0 ]; then
 		echo "Unable to load the buildtools environment setup file." >&2

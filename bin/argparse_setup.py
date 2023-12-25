@@ -243,6 +243,8 @@ class Argparse_Setup:
         self.parser.add_argument('-mp', '--mirror-as-premirrors', help="Make the dl layers as premirrors when --mirror is specified. Use the project mirror as PREMIRRORS during the build when --mirror is not specified", action='store_true', default=False)
 
         self.parser.add_argument('--no-prime', help='Control whether to download common objects before repo sync. Default: True', action="store_true")
+ 
+        self.parser.add_argument('--use-buildtools-cert', help='Using SSL certificate included in buildtools', action="store_true")
 
     def add_repo_options(self):
         self.repo_args = self.parser.add_argument_group('repo Settings')
