@@ -101,7 +101,6 @@
     <project name="external/yocto/github.com.inotify-tools.inotify-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.inotify-tools.inotify-tools" bare="True"/>
     <project name="external/yocto/github.com.bluesabre.menulibre" remote="base" path="layers/wrlinux-src-dl/git/github.com.bluesabre.menulibre.git" bare="True"/>
     <project name="external/yocto/git.kernel.org.pub.scm.network.bridge.bridge-utils" remote="base" path="layers/wrlinux-src-dl/git/git.kernel.org.pub.scm.network.bridge.bridge-utils.git" bare="True"/>
-    <project name="external/yocto/github.com.npat-efault.picocom" remote="base" path="layers/wrlinux-src-dl/git/github.com.npat-efault.picocom" bare="True"/>
     <project name="external/yocto/github.com.USCiLab.cereal" remote="base" path="layers/wrlinux-src-dl/git/github.com.USCiLab.cereal.git" bare="True"/>
     <project name="external/yocto/github.com.tianon.gosu" remote="base" path="layers/wrlinux-src-dl/git/github.com.tianon.gosu.git" bare="True"/>
     <project name="external/yocto/git.zx2c4.com.wireguard-tools" remote="base" path="layers/wrlinux-src-dl/git/git.zx2c4.com.wireguard-tools" bare="True"/>
