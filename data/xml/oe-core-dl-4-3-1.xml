@@ -64,7 +64,6 @@
     <project name="external/yocto/git.code.sf.net.p.dos2unix.dos2unix" remote="base" path="layers/wrlinux-src-dl/git/git.code.sf.net.p.dos2unix.dos2unix" bare="True"/>
     <project name="external/yocto/gitlab.gnome.org.GNOME.mobile-broadband-provider-info" remote="base" path="layers/wrlinux-src-dl/git/gitlab.gnome.org.GNOME.mobile-broadband-provider-info.git" bare="True"/>
     <project name="external/yocto/github.com.fedora-modularity.libmodulemd" remote="base" path="layers/wrlinux-src-dl/git/github.com.fedora-modularity.libmodulemd" bare="True"/>
-    <project name="external/yocto/github.com.nhorman.rng-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.nhorman.rng-tools.git" bare="True"/>
     <project name="external/yocto/github.com.smuellerDD.jitterentropy-library" remote="base" path="layers/wrlinux-src-dl/git/github.com.smuellerDD.jitterentropy-library.git" bare="True"/>
     <project name="external/yocto/gitlab.gnome.org.GNOME.gnome-desktop-testing" remote="base" path="layers/wrlinux-src-dl/git/gitlab.gnome.org.GNOME.gnome-desktop-testing.git" bare="True"/>
     <project name="external/yocto/github.com.KhronosGroup.Vulkan-Loader" remote="base" path="layers/wrlinux-src-dl/git/github.com.KhronosGroup.Vulkan-Loader.git" bare="True"/>
