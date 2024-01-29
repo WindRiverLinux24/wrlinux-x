@@ -44,3 +44,4 @@
     <project name="external/qt/code.qt.io.qt.qtquick3dphysics" remote="base" path="layers/wrlinux-src-dl/git/code.qt.io.qt.qtquick3dphysics.git" bare="True"/>
     <project name="external/yocto/code.qt.io.qt.qtwebengine" remote="base" path="layers/wrlinux-src-dl/git/code.qt.io.qt.qtwebengine.git" bare="True"/>
     <project name="external/yocto/code.qt.io.qt.qtwebengine-chromium" remote="base" path="layers/wrlinux-src-dl/git/code.qt.io.qt.qtwebengine-chromium.git" bare="True"/>
+    <project name="external/yocto/code.qt.io.qt.qtdoc" remote="base" path="layers/wrlinux-src-dl/git/code.qt.io.qt.qtdoc.git" bare="True"/>
