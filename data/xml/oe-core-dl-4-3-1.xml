@@ -181,3 +181,4 @@
     <project name="external/yocto/github.com.ibm-s390-linux.s390-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.ibm-s390-linux.s390-tools" bare="True"/>
     <project name="external/yocto/github.com.KhronosGroup.Vulkan-Utility-Libraries" remote="base" path="layers/wrlinux-src-dl/git/github.com.KhronosGroup.Vulkan-Utility-Libraries.git" bare="True"/>
     <project name="external/yocto/github.com.p11-glue.pkcs11-json" remote="base" path="layers/wrlinux-src-dl/git/github.com.p11-glue.pkcs11-json.git" bare="True"/>
+    <project name="external/yocto/github.com.nhorman.rng-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.nhorman.rng-tools.git" bare="True"/>

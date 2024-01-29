@@ -165,5 +165,4 @@
     <project name="external/yocto/github.com.Mbed-TLS.mbedtls" remote="base" path="layers/wrlinux-src-dl/git/github.com.Mbed-TLS.mbedtls.git" bare="True"/>
     <project name="external/yocto/gitlab.freedesktop.org.mobile-broadband.libmbim" remote="base" path="layers/wrlinux-src-dl/git/gitlab.freedesktop.org.mobile-broadband.libmbim.git" bare="True"/>
     <project name="external/yocto/github.com.sqlite.sqlite" remote="base" path="layers/wrlinux-src-dl/git/github.com.sqlite.sqlite" bare="True"/>
-    <project name="external/yocto/github.com.nhorman.rng-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.nhorman.rng-tools.git" bare="True"/>
     <project name="external/yocto/gitlab.com.wsakernel.picocom" remote="base" path="layers/wrlinux-src-dl/git/gitlab.com.wsakernel.picocom" bare="True"/>
