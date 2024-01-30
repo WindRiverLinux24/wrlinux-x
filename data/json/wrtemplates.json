@@ -1,0 +1,381 @@
+{
+  "wrtemplates": [
+    {
+      "name": "feature/aws",
+      "layer_dependencies": [
+        "meta-iot-cloud",
+        "meta-aws"
+      ]
+    },
+    {   
+      "name": "feature/azure",
+      "layer_dependencies": [
+        "meta-iot-cloud"
+      ]   
+    },
+    {
+      "name": "feature/buildah",
+      "require": [
+        "feature/podman"
+      ],
+      "layer_dependencies": [
+        "meta-virtualization"
+      ]
+    },
+    {
+      "name": "feature/chromium",
+      "layer_dependencies": [
+        "meta-chromium"
+      ]
+    },
+    {
+      "name": "feature/chromium-web-kiosk",
+      "require": [
+        "feature/chromium"
+      ],
+      "layer_dependencies": [
+        "meta-chromium"
+      ]
+    },
+    {
+      "name": "feature/chrony",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/clang-sdk",
+      "layer_dependencies": [
+        "meta-clang"
+      ]
+    },
+    {
+      "name": "feature/container-registry",
+      "layer_dependencies": [
+        "meta-webserver",
+        "meta-virtualization"
+      ]
+    },
+    {
+      "name": "feature/docker-moby",
+      "layer_dependencies": [
+        "meta-virtualization"
+      ]
+    },
+    {
+      "name": "feature/dpdk",
+      "layer_dependencies": [
+        "meta-dpdk"
+      ]
+    },
+    {   
+      "name": "feature/ecryptfs",
+      "layer_dependencies": [
+        "meta-security"
+      ]   
+    },
+    {
+      "name": "feature/f2fstools",
+      "layer_dependencies": [
+        "meta-filesystems"
+      ]
+    },
+    {
+      "name": "feature/gcc-sanitizers",
+      "require": [
+        "feature/target-toolchain"
+      ]
+    },
+    {
+      "name": "feature/gperftools",
+      "layer_dependencies": [
+        "meta-oe"
+      ]
+    },
+    {
+      "name": "feature/grpc",
+      "layer_dependencies": [
+        "meta-oe"
+      ]
+    },
+    {
+      "name": "feature/installer-support",
+      "layer_dependencies": [
+        "meta-anaconda"
+      ]
+    },
+    {
+      "name": "feature/ipmi",
+      "layer_dependencies": [
+        "meta-oe",
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/kubernetes",
+      "layer_dependencies": [
+        "meta-virtualization"
+      ]
+    },
+    {
+      "name": "feature/lapack",
+      "require": [
+        "feature/fortran"
+      ],
+      "layer_dependencies": [
+        "meta-oe"
+      ]
+    },
+    {
+      "name": "feature/lat",
+      "require": [
+        "feature/ostree",
+        "feature/chrony"
+      ],
+      "layer_dependencies": [
+        "meta-lat"
+      ]
+    },
+    {
+      "name": "feature/lat-fitimage",
+      "require": [
+        "feature/lat"
+      ],
+      "layer_dependencies": [
+        "meta-lat"
+      ]
+    },
+    {
+      "name": "feature/mbim",
+      "layer_dependencies": [
+        "meta-oe"
+      ]
+    },
+    {
+      "name": "feature/mbp-project",
+      "require": [
+        "feature/archiver",
+        "feature/package-management"
+      ]
+    },
+    {   
+      "name": "feature/nerdctl",
+      "layer_dependencies": [
+        "meta-virtualization"
+      ]   
+    },
+    {
+      "name": "feature/netplan",
+      "layer_dependencies": [
+        "meta-oe",
+        "meta-python"
+      ]
+    },
+    {
+      "name": "feature/nftables",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/ntp",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {    
+      "name": "feature/opencv",
+      "layer_dependencies": [
+        "meta-oe"
+      ]
+    },
+    {    
+      "name": "feature/ostree",
+      "layer_dependencies": [
+        "meta-lat"
+      ]   
+    },
+    {
+      "name": "feature/podman",
+      "layer_dependencies": [
+        "meta-virtualization"
+      ]
+    },
+    {
+      "name": "feature/ptest",
+      "require": [
+        "feature/sftp-server"
+      ]
+    },
+    {
+      "name": "feature/qt-addons",
+      "require": [
+        "feature/qt-essentials"
+      ],
+      "layer_dependencies": [
+        "meta-qt6"
+      ]
+    },
+    {
+      "name": "feature/qt-essentials",
+      "layer_dependencies": [
+        "meta-qt6"
+      ] 
+    },
+    {
+      "name": "feature/qt-examples",
+      "require": [
+        "feature/qt-essentials",
+        "feature/qt-addons"
+      ],
+      "layer_dependencies": [
+        "meta-qt6"
+      ] 
+    },
+    {
+      "name": "feature/signed-container",
+      "require": [
+        "feature/podman"
+      ],
+      "layer_dependencies": [
+        "meta-virtualization"
+      ]
+    },
+    {
+      "name": "feature/snmp",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/tcpslice",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/tensorflow",
+      "layer_dependencies": [
+        "meta-tensorflow"
+      ]
+    },
+    {
+      "name": "feature/unit-test",
+      "layer_dependencies": [
+        "meta-oe"
+      ]
+    },
+    {
+      "name": "feature/valgrind",
+      "require": [
+        "feature/wr-profiling-kernel-overrides"
+      ]
+    },
+    {
+      "name": "feature/vsomeip",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/wireguard",
+      "layer_dependencies": [
+        "meta-networking"
+      ]
+    },
+    {
+      "name": "feature/bcc",
+      "layer_dependencies": [
+        "meta-clang"
+      ]
+    },
+    {
+      "name": "feature/debug",
+      "require": [
+        "feature/target-toolchain"
+      ]
+    },
+    {
+      "name": "feature/efi-secure-boot",
+      "layer_dependencies": [
+        "meta-efi-secure-boot"
+      ]
+    },
+    {
+      "name": "feature/encrypted-storage",
+      "require": [
+        "feature/tpm2",
+        "feature/efi-secure-boot"
+      ],
+      "layer_dependencies": [
+        "meta-encrypted-storage"
+      ]
+    },
+    {
+      "name": "feature/LAMP",
+      "require": [
+        "feature/mariadb"
+      ]
+    },
+    {
+      "name": "feature/ids-basic",
+      "layer_dependencies": [
+        "meta-ids"
+      ]
+    },
+    {
+      "name": "feature/ima",
+      "require": [
+        "feature/efi-secure-boot"
+      ],
+      "layer_dependencies": [
+        "meta-integrity"
+      ]
+    },
+    {
+      "name": "feature/pts",
+      "require": [
+        "feature/target-toolchain"
+      ]
+    },
+    {
+      "name": "feature/run-container",
+      "require": [
+          "feature/docker"
+      ]
+    },
+    {
+      "name": "feature/selinux",
+      "layer_dependencies": [
+        "meta-selinux"
+      ]
+    },
+    {
+      "name": "feature/stig",
+      "require": [
+        "feature/selinux",
+        "feature/ids-basic",
+        "feature/firewall",
+        "feature/rpm-required-sig",
+        "feature/package-management",
+        "feature/pam-faillock",
+        "feature/pam-wheel"
+      ],
+      "layer_dependencies": [
+        "meta-security"
+      ]
+    },
+    {
+      "name": "feature/test",
+      "require": [
+          "feature/ptest"
+      ]
+    },
+    {
+      "name": "feature/tpm2",
+      "layer_dependencies": [
+        "meta-tpm2"
+      ]
+    }
+  ]
+}

@@ -150,6 +150,10 @@ class Setup():
         # Default location for the related XML files
         self.xml_dir = os.path.join(self.install_dir, 'data/xml')
 
+        # wrtemplates config file
+        self.wrtemplates_cfg = os.path.join(self.install_dir, 'data/json/wrtemplates.json')
+        self.wrtemplates_cfg_dict = {}
+
         # Set the directory where we're running.
         self.project_dir = os.getcwd()
 
@@ -593,8 +597,33 @@ class Setup():
             if not procConfig(recipe=l):
                 allfound = False
 
+        if self.wrtemplates != []:
+            import json
+            with open(self.wrtemplates_cfg, 'r') as fl:
+                self.wrtemplates_cfg_dict = json.load(fl)
+
+        def handle_wrtemplates_dependenies(wrtemplate, wrtemplates_cfg_dict):
+            allfound = True
+            for template in wrtemplates_cfg_dict["wrtemplates"]:
+                if template["name"] == wrtemplate:
+                    if "layer_dependencies" in template:
+                        for d in template["layer_dependencies"]:
+                            logger.debug("Checking depend layer %s for template %s" % (d, wrtemplate))
+                            if not procConfig(layer=d):
+                                allfound = False
+                    if "require" in template:
+                        for r in template["require"]:
+                            logger.debug("Checking require template %s for template %s" % (r, wrtemplate))
+                            if not handle_wrtemplates_dependenies(r, wrtemplates_cfg_dict):
+                                allfound = False
+                    break
+
+            return allfound
+
         for l in self.wrtemplates:
             if not procConfig(wrtemplate=l):
+                allfound = False
+            if not handle_wrtemplates_dependenies(l, self.wrtemplates_cfg_dict):
                 allfound = False
 
         if not allfound:
