@@ -167,3 +167,4 @@
     <project name="external/yocto/github.com.sqlite.sqlite" remote="base" path="layers/wrlinux-src-dl/git/github.com.sqlite.sqlite" bare="True"/>
     <project name="external/yocto/gitlab.com.wsakernel.picocom" remote="base" path="layers/wrlinux-src-dl/git/gitlab.com.wsakernel.picocom" bare="True"/>
     <project name="external/yocto/github.com.aio-libs.multidict" remote="base" path="layers/wrlinux-src-dl/git/github.com.aio-libs.multidict" bare="True"/>
+    <project name="external/yocto/git.kernel.org.pub.scm.libs.libtrace.libtracefs" remote="base" path="layers/wrlinux-src-dl/git/git.kernel.org.pub.scm.libs.libtrace.libtracefs.git" bare="True"/>
