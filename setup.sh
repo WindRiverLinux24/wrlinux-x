@@ -313,7 +313,7 @@ fi # if help -ne 1
 # of Python, and rather than fixing that and being eternally vigilant for 
 # any other new feature use, just check the version here.
 py_v36_check=$(python3 -c 'import sys; print(sys.version_info >= (3,8,0))')
-if [ "$py_v36_check" != "True" ]; then
+if [ "$py_v36_check" != "True" -a $help -ne 1 ]; then
 	echo >&2 "BitBake requires Python 3.8.0 or later as 'python3'"
 	exit 1
 fi
