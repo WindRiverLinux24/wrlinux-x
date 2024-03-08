@@ -183,3 +183,4 @@
     <project name="external/yocto/github.com.nhorman.rng-tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.nhorman.rng-tools.git" bare="True"/>
     <project name="external/yocto/github.com.yoctoproject.bmaptool" remote="base" path="layers/wrlinux-src-dl/git/github.com.yoctoproject.bmaptool" bare="True"/>
     <project name="external/yocto/github.com.nemtrif.utfcpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.nemtrif.utfcpp" bare="True"/>
+    <project name="external/yocto/github.com.nemtrif.ftest" remote="base" path="layers/wrlinux-src-dl/git/github.com.nemtrif.ftest" bare="True"/>
