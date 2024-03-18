@@ -169,3 +169,4 @@
     <project name="external/yocto/git.kernel.org.pub.scm.libs.libtrace.libtracefs" remote="base" path="layers/wrlinux-src-dl/git/git.kernel.org.pub.scm.libs.libtrace.libtracefs.git" bare="True"/>
     <project name="external/yocto/github.com.redis.hiredis" remote="base" path="layers/wrlinux-src-dl/git/github.com.redis.hiredis.git" bare="True"/>
     <project name="external/yocto/github.com.e2tools.e2tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.e2tools.e2tools.git" bare="True"/>
+    <project name="external/ovp/github.com.golang.sys" remote="base" path="layers/wrlinux-src-dl/git/github.com.golang.sys" bare="True"/>
