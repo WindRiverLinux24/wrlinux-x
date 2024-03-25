@@ -173,3 +173,4 @@
     <project name="external/yocto/github.com.tanbro.pyyaml-include" remote="base" path="layers/wrlinux-src-dl/git/github.com.tanbro.pyyaml-include" bare="True"/>
     <project name="external/yocto/github.com.martinmoene.expected-lite" remote="base" path="layers/wrlinux-src-dl/git/github.com.martinmoene.expected-lite.git" bare="True"/>
     <project name="external/yocto/github.com.ericniebler.range-v3" remote="base" path="layers/wrlinux-src-dl/git/github.com.ericniebler.range-v3.git" bare="True"/>
+    <project name="external/yocto/github.com.Neargye.magic_enum" remote="base" path="layers/wrlinux-src-dl/git/github.com.Neargye.magic_enum.git" bare="True"/>
