@@ -179,3 +179,4 @@
     <project name="external/yocto/github.com.HowardHinnant.date" remote="base" path="layers/wrlinux-src-dl/git/github.com.HowardHinnant.date.git" bare="True"/>
     <project name="external/yocto/github.com.chriskohlhoff.asio" remote="base" path="layers/wrlinux-src-dl/git/github.com.chriskohlhoff.asio.git" bare="True"/>
     <project name="external/yocto/github.com.civetweb.civetweb" remote="base" path="layers/wrlinux-src-dl/git/github.com.civetweb.civetweb.git" bare="True"/>
+    <project name="external/yocto/github.com.LEW21.pydbus" remote="base" path="layers/wrlinux-src-dl/git/github.com.LEW21.pydbus.git" bare="True"/>
