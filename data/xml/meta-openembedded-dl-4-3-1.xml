@@ -171,3 +171,4 @@
     <project name="external/yocto/github.com.e2tools.e2tools" remote="base" path="layers/wrlinux-src-dl/git/github.com.e2tools.e2tools.git" bare="True"/>
     <project name="external/ovp/github.com.golang.sys" remote="base" path="layers/wrlinux-src-dl/git/github.com.golang.sys" bare="True"/>
     <project name="external/yocto/github.com.tanbro.pyyaml-include" remote="base" path="layers/wrlinux-src-dl/git/github.com.tanbro.pyyaml-include" bare="True"/>
+    <project name="external/yocto/github.com.martinmoene.expected-lite" remote="base" path="layers/wrlinux-src-dl/git/github.com.martinmoene.expected-lite.git" bare="True"/>
