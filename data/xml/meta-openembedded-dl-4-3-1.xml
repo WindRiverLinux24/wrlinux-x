@@ -176,3 +176,4 @@
     <project name="external/yocto/github.com.Neargye.magic_enum" remote="base" path="layers/wrlinux-src-dl/git/github.com.Neargye.magic_enum.git" bare="True"/>
     <project name="external/yocto/github.com.jarro2783.cxxopts" remote="base" path="layers/wrlinux-src-dl/git/github.com.jarro2783.cxxopts.git" bare="True"/>
     <project name="external/yocto/github.com.gsl-lite.gsl-lite" remote="base" path="layers/wrlinux-src-dl/git/github.com.gsl-lite.gsl-lite.git" bare="True"/>
+    <project name="external/yocto/github.com.HowardHinnant.date" remote="base" path="layers/wrlinux-src-dl/git/github.com.HowardHinnant.date.git" bare="True"/>
