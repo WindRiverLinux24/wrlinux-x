@@ -883,11 +883,6 @@ class Setup():
         self.copySample(self.install_dir + '/data/samples/conf-notes.sample', self.project_dir + '/config/conf-notes.txt')
         self.copySample(self.install_dir + '/data/samples/local.conf.sample', self.project_dir + '/config/local.conf.sample')
 
-        with open(self.project_dir + '/config/local.conf.sample', 'a') as f:
-            inc = '\n# Add known layers to recipe lists'
-            inc += '\nrequire conf/wrlinux-recipelists.inc\n'
-            f.write(inc)
-
         if os.path.exists(self.install_dir + '/data/samples/site.conf.sample'):
             self.copySample(self.install_dir + '/data/samples/site.conf.sample', self.project_dir + '/config/site.conf.sample')
         with open(self.saved_base_branch, 'w') as f:
@@ -1650,6 +1645,16 @@ class Setup():
 
         with open(local_layer_conf, 'w') as f:
             f.writelines(lines)
+
+        require_recipelists = 'require conf/wrlinux-recipelists.inc\n'
+        require_desc = '\n# WR layers are added to recipe lists used during allowed list checking\n'
+        require_desc += '# With the list below included it is not needed to enable customer packages\n'
+        require_desc += '# or remove customer layers from allowed list checking\n'
+        require_desc += '# RECOMMENED NOT TO REMOVE\n'
+        with open(os.path.join(self.project_dir + '/layers/local/conf/layer.conf'), 'a+') as f:
+            f.seek(0)
+            if require_recipelists not in f.readlines():
+                f.write(require_desc + require_recipelists)
 
     def __setup_local_layer(self):
         """Setup the local layer in /layers/local - if required."""
