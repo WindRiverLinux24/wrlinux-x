@@ -122,7 +122,7 @@
     <project name="external/yocto/github.com.glfw.glfw" remote="base" path="layers/wrlinux-src-dl/git/github.com.glfw.glfw" bare="True"/>
     <project name="external/yocto/github.com.ocornut.imgui" remote="base" path="layers/wrlinux-src-dl/git/github.com.ocornut.imgui" bare="True"/>
     <project name="external/yocto/github.com.syoyo.tinygltf" remote="base" path="layers/wrlinux-src-dl/git/github.com.syoyo.tinygltf" bare="True"/>
-    <project name="external/yocto/github.com.gabime.spdlog" remote="base" path="layers/wrlinux-src-dl/git/github.com.gabime.spdlog" bare="True"/>
+    <project name="external/yocto/github.com.gabime.spdlog" remote="base" path="layers/wrlinux-src-dl/git/github.com.gabime.spdlog.git" bare="True"/>
     <project name="external/yocto/github.com.numactl.numactl" remote="base" path="layers/wrlinux-src-dl/git/github.com.numactl.numactl" bare="True"/>
     <project name="external/yocto/github.com.google.brotli" remote="base" path="layers/wrlinux-src-dl/git/github.com.google.brotli.git" bare="True"/>
     <project name="external/yocto/github.com.libgit2.libgit2" remote="base" path="layers/wrlinux-src-dl/git/github.com.libgit2.libgit2.git" bare="True"/>
