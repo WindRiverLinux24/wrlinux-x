@@ -182,3 +182,4 @@
     <project name="external/yocto/github.com.LEW21.pydbus" remote="base" path="layers/wrlinux-src-dl/git/github.com.LEW21.pydbus.git" bare="True"/>
     <project name="external/yocto/github.com.facebook.rocksdb" remote="base" path="layers/wrlinux-src-dl/git/github.com.facebook.rocksdb.git" bare="True"/>
     <project name="external/yocto/github.com.jbeder.yaml-cpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.jbeder.yaml-cpp.git" bare="True"/>
+    <project name="external/yocto/github.com.gabime.spdlog" remote="base" path="layers/wrlinux-src-dl/git/github.com.gabime.spdlog.git" bare="True"/>
