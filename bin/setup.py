@@ -23,6 +23,7 @@ import subprocess
 import sys
 import time
 import re
+import json
 
 from urllib.parse import urlparse
 
@@ -153,6 +154,10 @@ class Setup():
         # wrtemplates config file
         self.wrtemplates_cfg = os.path.join(self.install_dir, 'data/json/wrtemplates.json')
         self.wrtemplates_cfg_dict = {}
+
+        # dl layer recommends from json
+        self.dl_layer_recommends = os.path.join(self.install_dir, 'data/json/dl_layer_recommends.json')
+        self.dl_layer_recommends_dict = {}
 
         # Set the directory where we're running.
         self.project_dir = os.getcwd()
@@ -598,7 +603,6 @@ class Setup():
                 allfound = False
 
         if self.wrtemplates != []:
-            import json
             with open(self.wrtemplates_cfg, 'r') as fl:
                 self.wrtemplates_cfg_dict = json.load(fl)
 
@@ -739,6 +743,20 @@ class Setup():
                 (required, recommended) = self.index.getDependencies(lindex, layerBranch)
                 for dep in required + recommended:
                     recommendedQueue.append( (lindex, dep) )
+
+        # Add recommended dl layers from json file when needed
+        if self.dl_layers != -1:
+            with open(self.dl_layer_recommends, 'r') as f:
+                self.dl_layer_recommends_dict = json.load(f)
+
+            for (lindex, layerBranch) in self.requiredlayers + self.recommendedlayers:
+                for layer in self.index.find_layer(lindex, id=layerBranch['layer']):
+                    l_name = layer['name']
+                    if l_name in self.dl_layer_recommends_dict.keys():
+                        for dl_name in self.dl_layer_recommends_dict[l_name]:
+                            new_rec = self.get_layer_by_name(dl_name)
+                            if new_rec and not new_rec in self.recommendedlayers:
+                                self.recommendedlayers.append(new_rec)
 
         unexpected_groups = []
         for (lindex, layerBranch) in self.requiredlayers + self.recommendedlayers:
@@ -1850,6 +1868,22 @@ class Setup():
         if lindex:
             return self.index.getIndexBranch(default=self.base_branch, lindex=lindex)
         return self.base_branch
+
+    def get_layer_by_name(self, name):
+        """
+        Return lindex and layerBranch for layer 'name'
+        """
+        for lindex in self.index.index:
+            for l in lindex['layerItems']:
+                if name == l['name']:
+                    branchid = self.index.getBranchId(lindex, self.get_branch(lindex=lindex))
+                    if not branchid:
+                        continue
+                    for layerBranch in self.index.getLayerBranch(lindex, branchid, layerItem=l) or []:
+                        return (lindex, layerBranch)
+        logger.error("Failed to find lindex and layerBranch for %s" % name)
+        logger.error("Check %s to fix it" % self.dl_layer_recommends)
+        return ()
 
     def get_path(self, tool):
         cmd = self.which(tool)
