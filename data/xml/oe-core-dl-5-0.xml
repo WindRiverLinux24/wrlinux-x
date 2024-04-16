@@ -182,3 +182,6 @@
     <project name="external/yocto/github.com.yoctoproject.bmaptool" remote="base" path="layers/wrlinux-src-dl/git/github.com.yoctoproject.bmaptool" bare="True"/>
     <project name="external/yocto/github.com.nemtrif.utfcpp" remote="base" path="layers/wrlinux-src-dl/git/github.com.nemtrif.utfcpp" bare="True"/>
     <project name="external/yocto/github.com.nemtrif.ftest" remote="base" path="layers/wrlinux-src-dl/git/github.com.nemtrif.ftest" bare="True"/>
+    <project name="external/yocto/github.com.ARMmbed.mbedtls" remote="base" path="layers/wrlinux-src-dl/git/github.com.ARMmbed.mbedtls.git" bare="True"/>
+    <project name="external/yocto/github.com.acpica.acpica" remote="base" path="layers/wrlinux-src-dl/git/github.com.acpica.acpica" bare="True"/>
+    <project name="external/yocto/github.com.gabime.spdlog" remote="base" path="layers/wrlinux-src-dl/git/github.com.gabime.spdlog.git" bare="True"/>
