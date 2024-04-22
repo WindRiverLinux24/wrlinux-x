@@ -376,6 +376,16 @@
       "layer_dependencies": [
         "meta-tpm2"
       ]
+    },
+    {
+      "name": "feature/dm-verity",
+      "layer_dependencies": [
+        "meta-security",
+        "meta-oe"
+      ],
+      "require": [
+         "feature/readonly-root"
+      ]
     }
   ]
 }
