@@ -187,3 +187,4 @@
     <project name="external/yocto/gitlab.freedesktop.org.geoclue.geoclue" remote="base" path="layers/wrlinux-src-dl/git/gitlab.freedesktop.org.geoclue.geoclue.git" bare="True"/>
     <project name="external/yocto/github.com.alban.dbus-daemon-proxy" remote="base" path="layers/wrlinux-src-dl/git/github.com.alban.dbus-daemon-proxy" bare="True"/>
     <project name="external/yocto/gitlab.com.ipcalc.ipcalc" remote="base" path="layers/wrlinux-src-dl/git/gitlab.com.ipcalc.ipcalc.git" bare="True"/>
+    <project name="external/yocto/github.com.DaveGamble.cJSON" remote="base" path="layers/wrlinux-src-dl/git/github.com.DaveGamble.cJSON.git" bare="True"/>
