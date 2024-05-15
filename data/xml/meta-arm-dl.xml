@@ -6,4 +6,3 @@
     <project name="external/yocto/github.com.OP-TEE.optee_test" remote="base" path="layers/wrlinux-src-dl/git/github.com.OP-TEE.optee_test.git" bare="True"/>
     <project name="external/yocto/github.com.OP-TEE.optee_client" remote="base" path="layers/wrlinux-src-dl/git/github.com.OP-TEE.optee_client.git" bare="True"/>
     <project name="external/yocto/github.com.linaro-swg.optee_examples" remote="base" path="layers/wrlinux-src-dl/git/github.com.linaro-swg.optee_examples.git" bare="True"/>
-
