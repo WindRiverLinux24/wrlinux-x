@@ -1856,10 +1856,7 @@ class Setup():
             cmd.append('--prune')
         if self.force_sync:
             cmd.append(self.force_sync)
-        log_it = 1
-        if self.repo_verbose is not True and self.quiet == self.default_repo_quiet:
-            cmd.append(self.quiet)
-            log_it = 0
+        log_it = 0
         cmd.extend(args)
         utils_setup.run_cmd(cmd, environment=self.env, log=log_it)
         logger.debug('Done')
