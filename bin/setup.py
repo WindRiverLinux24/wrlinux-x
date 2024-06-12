@@ -406,7 +406,7 @@ class Setup():
         cmd = [repo, 'status']
         with subprocess.Popen(cmd, stdout=subprocess.PIPE, env=self.env, cwd=self.project_dir) as proc:
             output = proc.stdout.read().decode('utf-8')
-            if re.search('^project\s+layers/.*\s+branch', output, flags=re.M):
+            if re.search(r'^project\s+layers/.*\s+branch', output, flags=re.M):
                 logger.error("Found checked out branches, here is the output from 'repo status':\n%s" % output)
                 logger.error('Switching base branch with checked out projects is not allowed,')
                 logger.error('but you are switching from "%s" to "%s".'% (saved_base_branch, self.base_branch))
