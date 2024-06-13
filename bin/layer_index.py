@@ -42,7 +42,7 @@ class Layer_Index():
         self.index = []
 
         # Do we have local mirror entries to load?
-        m_index = {}
+        self.m_index = {}
 
         if mirror:
             for (dirpath, dirnames, filenames) in os.walk(mirror):
@@ -54,8 +54,8 @@ class Layer_Index():
                         continue
                     pindex = self.load_serialized_index(os.path.join(dirpath, filename), name='Mirrored Index')
                     # A mirror can be made up of multiple indexes, so we need to identify which one they belong to
-                    if pindex and pindex['CFG']['DESCRIPTION'] in m_index:
-                        lindex = m_index[pindex['CFG']['DESCRIPTION']]
+                    if pindex and pindex['CFG']['DESCRIPTION'] in self.m_index:
+                        lindex = self.m_index[pindex['CFG']['DESCRIPTION']]
                         for entry in pindex:
                             if 'apilinks' == entry:
                                 continue
@@ -70,7 +70,7 @@ class Layer_Index():
                             except TypeError as error:
                                 raise TypeError('Merge failed of pindex[%s] and lindex[%s]: %s' % (entry, entry, error))
                     else: # Not already know
-                        m_index[pindex['CFG']['DESCRIPTION']] = pindex
+                        self.m_index[pindex['CFG']['DESCRIPTION']] = pindex
 
         for cfg in indexcfg:
             lindex = None
@@ -103,9 +103,9 @@ class Layer_Index():
                     branch = branch.replace(find, rep)
 
             # Do we have an mirrored version? If so use it, skip regular processing
-            if indexname in m_index:
+            if indexname in self.m_index:
                 logger.plain('Using index %s from the mirror index...' % (indexname))
-                lindex = m_index[indexname]
+                lindex = self.m_index[indexname]
             else:
                logger.plain('Loading index %s from %s...' % (indexname, indexurl))
 

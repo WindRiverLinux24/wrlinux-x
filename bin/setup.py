@@ -294,10 +294,8 @@ class Setup():
         self.project_setup()
 
         self.__prep_replacements()
-        if self.mirror != True:
-            # We only want to do this if we're not mirroring...
-            self.update_project()
-        else:
+
+        if self.mirror:
             if self.dl_layers not in (0, -1):
                 logger.warning("clone-depth is ignored since --mirror is used")
 
@@ -306,6 +304,11 @@ class Setup():
             self.update_mirror_index()
 
         self.update_manifest()
+
+        # We only want to do this if we're not mirroring, this must be run
+        # after update_manifest() to make sure dl layers are added to 'LAYERS'
+        if self.mirror != True:
+            self.update_project()
 
         self.check_default_xml()
 
@@ -647,10 +650,8 @@ class Setup():
                         continue
 
                     for layerBranch in self.index.getLayerBranch(lindex, branchid, layerItem=l) or []:
-                        # dl layers are always added as recommends in an --all-layers mode
-                        if '-dl-' in l_name or l_name.endswith('-dl'):
-                            recommendedQueue.append( (lindex, layerBranch) )
-                        else:
+                        # Skip the download layer which will be handled by process_dl_layers()
+                        if not utils_setup.is_dl_layer(l_name):
                             requiredQueue.append( (lindex, layerBranch) )
 
         # Compute requires and recommended layers...
@@ -733,30 +734,16 @@ class Setup():
             if not lindex or not layerBranch:
                 continue
 
+            # Skip the download layer which will be handled by process_dl_layers()
+            layers = self.index.find_layer(lindex, id=layerBranch['layer'])
+            if layers and utils_setup.is_dl_layer(layers[0]['name']):
+                continue
+
             if not checkCache(lindex, layerBranch, True):
-                if self.dl_layers == -1:
-                    layers = self.index.find_layer(lindex, id=layerBranch['layer'])
-                    if layers and ('-dl-' in layers[0]['name'] or layers[0]['name'].endswith('-dl')):
-                        # Skip the download layer
-                        continue
                 self.recommendedlayers.append( (lindex, layerBranch) )
                 (required, recommended) = self.index.getDependencies(lindex, layerBranch)
                 for dep in required + recommended:
                     recommendedQueue.append( (lindex, dep) )
-
-        # Add recommended dl layers from json file when needed
-        if self.dl_layers != -1:
-            with open(self.dl_layer_recommends, 'r') as f:
-                self.dl_layer_recommends_dict = json.load(f)
-
-            for (lindex, layerBranch) in self.requiredlayers + self.recommendedlayers:
-                for layer in self.index.find_layer(lindex, id=layerBranch['layer']):
-                    l_name = layer['name']
-                    if l_name in self.dl_layer_recommends_dict.keys():
-                        for dl_name in self.dl_layer_recommends_dict[l_name]:
-                            new_rec = self.get_layer_by_name(dl_name)
-                            if new_rec and not new_rec in self.recommendedlayers:
-                                self.recommendedlayers.append(new_rec)
 
         unexpected_groups = []
         for (lindex, layerBranch) in self.requiredlayers + self.recommendedlayers:
@@ -1014,6 +1001,16 @@ class Setup():
         src.close()
         dst.close()
 
+    def get_dl_layers_from_json(self, layername):
+        if not self.dl_layer_recommends_dict:
+            with open(self.dl_layer_recommends, 'r') as f:
+                self.dl_layer_recommends_dict = json.load(f)
+
+        if layername in self.dl_layer_recommends_dict.keys():
+            return self.dl_layer_recommends_dict[layername]
+
+        return []
+
     def update_mirror_index(self):
         logger.debug('Starting')
         path = os.path.join(self.project_dir, 'mirror-index')
@@ -1048,7 +1045,6 @@ class Setup():
                 url_cache[vcs_url].append((lindex, layerBranch['branch']))
 
         # Serialize the information for each of the layers (and their sublayers)
-        found_oe_core_dl = False
         extra_dl_xmls = set()
         for vcs_url in url_cache:
             for (lindex, branchid) in url_cache[vcs_url]:
@@ -1067,12 +1063,18 @@ class Setup():
                             os.makedirs(destdir, exist_ok=True)
                             shutil.copy(srcfile, destdir)
 
-                        # Check whether need copy the xml files which are not in layerindex
-                        if 'oe-core-dl' in name:
-                            found_oe_core_dl = True
-                        srcfile_dl = os.path.join(self.xml_dir, '%s-dl.xml' % (os.path.basename(layer['vcs_url'])))
-                        if os.path.exists(srcfile_dl) and not utils_setup.is_dl_layer(name):
-                            extra_dl_xmls.add(srcfile_dl)
+                        # Check whether need copy dl xml files from data/xml/ to mirror-index/xml/
+                        if self.dl_layers != -1:
+                            # For mapping layer to layer-dl.xml
+                            srcfile_dl = os.path.join(self.xml_dir, '%s-dl.xml' % (os.path.basename(layer['vcs_url'])))
+                            if os.path.exists(srcfile_dl):
+                                extra_dl_xmls.add(srcfile_dl)
+
+                            # For real dl layers which are not in layerindex
+                            for dl_name in self.get_dl_layers_from_json(name):
+                                srcfile_dl = os.path.join(self.xml_dir, '%s.xml' % dl_name)
+                                if os.path.exists(srcfile_dl):
+                                    extra_dl_xmls.add(srcfile_dl)
 
                         # Special processing for the openembedded-core layer
                         if name == 'openembedded-core':
@@ -1085,8 +1087,7 @@ class Setup():
                                 os.makedirs(destdir, exist_ok=True)
                                 shutil.copy(srcfile, destdir)
 
-        # Only copy extra dl xml files when found oe-core-dl
-        if found_oe_core_dl and extra_dl_xmls:
+        if extra_dl_xmls:
             destdir = os.path.join(path, 'xml')
             for srcfile_dl in extra_dl_xmls:
                 shutil.copy(srcfile_dl, destdir)
@@ -1175,6 +1176,39 @@ class Setup():
                 write_xml('buildtools', self.another_buildtools_remote, 'base', self.another_buildtools_remote, self.buildtools_branch)
 
         def process_xml_layers(allLayers):
+            def get_cache_entry(name, remote, path, revision):
+                return {
+                       'name' : name,
+                       'remote' : remote,
+                       'path' : path,
+                       'revision' : revision,
+                    }
+
+            processed_dl_layers = set()
+
+            # Add recommended dl layers from json file when needed
+            def process_dl_layers(layername, url, remote):
+                for dl_name in self.get_dl_layers_from_json(layername):
+                    if dl_name in processed_dl_layers:
+                        continue
+                    else:
+                        processed_dl_layers.add(dl_name)
+
+                    path = 'layers/' + dl_name
+                    entry = get_cache_entry(dl_name, remote, path, self.base_branch)
+
+                    url_dl = url.replace(os.path.basename(url), dl_name)
+
+                    # The dl layer should starts with 'layers/' except mirrored index.
+                    if not self.index.m_index and not url_dl.startswith('layers/'):
+                        url_dl = 'layers/%s' % url_dl
+
+                    if url_dl not in cache:
+                        cache[url_dl] = []
+
+                    cache[url_dl].append(entry)
+                    self.replacement['layers'].append(path)
+
             def process_xml_layer(lindex, layerBranch):
                 branchid = self.index.getBranchId(lindex, self.get_branch(lindex=lindex))
 
@@ -1192,12 +1226,8 @@ class Setup():
 
                     path = 'layers/' + "".join(url.split('/')[-1:])
 
-                    entry = {
-                           'name' : layer['name'],
-                           'remote' : remote,
-                           'path' : path,
-                           'revision' : revision,
-                        }
+                    layername = layer['name']
+                    entry = get_cache_entry(layername, remote, path, revision,)
 
                     if url not in cache:
                         cache[url] = []
@@ -1205,17 +1235,16 @@ class Setup():
                     if entry['name'] == 'openembedded-core':
                         bitbakeurl = '/'.join(url.split('/')[:-1] + [ settings.BITBAKE ])
                         bitbakeBranch = self.index.getBranch(lindex, layerBranch['branch'])['bitbake_branch']
-                        bitbake_entry = {
-                                'name' : 'bitbake',
-                                'remote' : remote,
-                                'path' : path + '/bitbake',
-                                'revision' : bitbakeBranch,
-                            }
+                        bitbake_entry = get_cache_entry('bitbake', remote, path + '/bitbake', bitbakeBranch)
                         if bitbakeurl not in cache:
                             cache[bitbakeurl] = []
                         cache[bitbakeurl].append(bitbake_entry)
 
                     cache[url].append(entry)
+
+                    # Add recommended dl layers from json file when needed
+                    if self.dl_layers != -1:
+                         process_dl_layers(layername, url, remote)
 
             # We need to construct a list of layers with same urls...
             cache = {}
@@ -1241,7 +1270,9 @@ class Setup():
                 for entry in cache[url]:
                     add_xml(entry['name'], url, remote, path, revision)
 
-        process_xml_layers(self.requiredlayers + self.recommendedlayers)
+        allLayers = self.requiredlayers + self.recommendedlayers
+
+        process_xml_layers(allLayers)
 
         # process the remote layers
         for remote_layer in self.remote_layers:
