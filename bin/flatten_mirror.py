@@ -37,6 +37,7 @@ import argparse
 
 import os
 import sys
+import glob
 
 import shutil
 
@@ -334,7 +335,6 @@ def main():
         logger.info('Discovered base_branch: %s (%s)' % (base_branch, branchid))
         logger.info('Discovered bitbake_branch: %s' % bitbake_branch)
 
-        found_oe_core_dl = False
         extra_dl_xmls = set()
         processed_xmls = set()
         for layer in lindex['layerItems']:
@@ -438,24 +438,20 @@ def main():
                             push_or_copy(layer['name'], name, dst)
                             processed_list.append(name)
 
-            if 'oe-core-dl' in layer['name']:
-                found_oe_core_dl = True
-
-            srcfile_dl = os.path.join(mirror_path, 'xml', '%s-dl.xml' % (os.path.basename(layer['vcs_url'])))
-            if os.path.exists(srcfile_dl) and not utils_setup.is_dl_layer(layer['name']):
-                extra_dl_xmls.add(srcfile_dl)
-
-        if found_oe_core_dl and (extra_dl_xmls - processed_xmls):
-            for srcfile_dl in (extra_dl_xmls - processed_xmls):
-                # Strip ".xml"
-                layer_name = os.path.basename(srcfile_dl)[0:-4]
-                xml_dir = get_xml_dir(layer_name, dst_base_mirror)
-                xml_dst = xml_dest_dir(xml_dir, os.path.basename(srcfile_dl))
-                for name in transform_xml(srcfile_dl, xml_dst):
-                    dst = os.path.join(dest, os.path.basename(name))
-                    if not (name in processed_list or name + '.git' in processed_list):
-                        push_or_copy(layer_name, name, dst)
-                        processed_list.append(name)
+        # The required xml files have been copied to mirror-index/xml/ by
+        # "setup.sh --mirror", now just copy the ones which are not in
+        # processed_xmls, the transform_xml() will skip the SKIPPED layers
+        all_xmls = set(glob.glob(os.path.join(mirror_path, 'xml/*.xml')))
+        for xml in (all_xmls - processed_xmls):
+            # Strip ".xml"
+            layer_name = os.path.basename(xml)[0:-4]
+            xml_dir = get_xml_dir(layer_name, dst_base_mirror)
+            xml_dst = xml_dest_dir(xml_dir, os.path.basename(xml))
+            for name in transform_xml(xml, xml_dst):
+                dst = os.path.join(dest, os.path.basename(name))
+                if not (name in processed_list or name + '.git' in processed_list):
+                    push_or_copy(layer_name, name, dst)
+                    processed_list.append(name)
 
         # dst_base_mirror may not exist if we're subsetting...
         os.makedirs(dst_base_mirror, exist_ok=True)
