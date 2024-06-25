@@ -166,7 +166,7 @@ buildtools_setup() {
 	if [ ! -d "${BUILDTOOLS_GIT}" ]; then
 		FETCH_BUILDTOOLS=1
 
-		(mkdir -p ${BUILDTOOLS_GIT} && git init ${BUILDTOOLS_GIT})
+		(mkdir -p ${BUILDTOOLS_GIT} && git -c init.defaultBranch=main init ${BUILDTOOLS_GIT})
 		if [ $? -ne 0 ]; then
 			echo "Unable to create ${BUILDTOOLS_GIT} directory." >&2
 			return 1
