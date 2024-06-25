@@ -2,3 +2,4 @@
     <project name="external/yocto/git.ti.com.git.rpmsg.ti-rpmsg-char" remote="base" path="layers/wrlinux-src-dl/git/git.ti.com.git.rpmsg.ti-rpmsg-char.git" bare="True"/>
     <project name="external/yocto/github.com.ikhorn.plget" remote="base" path="layers/wrlinux-src-dl/git/github.com.ikhorn.plget.git" bare="True"/>
     <project name="external/yocto/git.ti.com.git.security-development-tools.core-secdev-k3" remote="base" path="layers/wrlinux-src-dl/git/git.ti.com.git.security-development-tools.core-secdev-k3.git" bare="True"/>
+    <project name="external/yocto/github.com.dentonw.devil" remote="base" path="layers/wrlinux-src-dl/git/github.com.dentonw.devil.git" bare="True"/>
