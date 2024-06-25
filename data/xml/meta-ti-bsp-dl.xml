@@ -1,0 +1,1 @@
+    <project name="external/yocto/git.ti.com.git.ti-u-boot.ti-u-boot" remote="base" path="layers/wrlinux-src-dl/git/git.ti.com.git.ti-u-boot.ti-u-boot.git" bare="True"/>
