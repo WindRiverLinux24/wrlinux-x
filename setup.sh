@@ -76,8 +76,16 @@ setup_shutdown_func() {
 # value_name is set to the first value found in the list:
 # git config, git config --global, and finally default_value
 add_gitconfig() {
-	VAR=$(git config "$1" || git config --global "$1" || echo "$2")
-	git config -f .gitconfig "${1}" "${VAR}"
+	if [ $# -eq 1 ]; then
+		VAR=$(git config "$1" || git config --global "$1")
+	elif [ $# -eq 2 ]; then
+		VAR=$(git config "$1" || git config --global "$1" || echo "$2")
+	else
+		echo "ERROR: Only one or two args are supported, but got $#"
+		return 1
+	fi
+
+	[ -n "${VAR}" ] && git config -f .gitconfig "${1}" "${VAR}"
 }
 
 shutdown() {
@@ -307,6 +315,8 @@ if [ $help -ne 1 ]; then
 	add_gitconfig "color.ui" "false"
 	add_gitconfig "color.diff" "false"
 	add_gitconfig "color.status" "false"
+	add_gitconfig "http.proxyauthmethod"
+	add_gitconfig "http.proxy"
 fi # if help -ne 1
 
 # We potentially have code that doesn't parse correctly with older versions 
