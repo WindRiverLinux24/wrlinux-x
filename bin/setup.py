@@ -1252,6 +1252,22 @@ class Setup():
             for (lindex, layerBranch) in allLayers:
                 process_xml_layer(lindex, layerBranch)
 
+            # oe-core is special, it might be either of:
+            # 1. BASE_URL/oe-core
+            # 2. BASE_URL/subset/oe-core
+            # And there isn't a way to know from client, which makes its dl
+            # layers may lost a 'layers/' prefix for case 1#, so adjust its dl
+            # layers from layer wrlinux.
+            if 'layers/wrlinux' in cache:
+                for url, entry in cache.copy().items():
+                    url_bn = os.path.basename(url)
+                    if not utils_setup.is_dl_layer(url_bn):
+                        continue
+                    if not url.startswith('layers/'):
+                        url_dl = 'layers/%s' % url
+                        del(cache[url])
+                        cache[url_dl] = entry
+
             from collections import OrderedDict
 
             for url in OrderedDict(sorted(cache.items(), key=lambda t: t[0])):
