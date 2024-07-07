@@ -650,7 +650,7 @@ class Setup():
                         continue
 
                     for layerBranch in self.index.getLayerBranch(lindex, branchid, layerItem=l) or []:
-                        # Skip the download layer which will be handled by process_dl_layers()
+                        # Skip the download layer which will be handled by process_dl_layer()
                         if not utils_setup.is_dl_layer(l_name):
                             requiredQueue.append( (lindex, layerBranch) )
 
@@ -734,7 +734,7 @@ class Setup():
             if not lindex or not layerBranch:
                 continue
 
-            # Skip the download layer which will be handled by process_dl_layers()
+            # Skip the download layer which will be handled by process_dl_layer()
             layers = self.index.find_layer(lindex, id=layerBranch['layer'])
             if layers and utils_setup.is_dl_layer(layers[0]['name']):
                 continue
@@ -1187,7 +1187,7 @@ class Setup():
             processed_dl_layers = set()
 
             # Add recommended dl layers from json file when needed
-            def process_dl_layers(layername, url, remote):
+            def process_dl_layer(layername, url, remote):
                 for dl_name in self.get_dl_layers_from_json(layername):
                     if dl_name in processed_dl_layers:
                         continue
@@ -1244,7 +1244,7 @@ class Setup():
 
                     # Add recommended dl layers from json file when needed
                     if self.dl_layers != -1:
-                         process_dl_layers(layername, url, remote)
+                         process_dl_layer(layername, url, remote)
 
             # We need to construct a list of layers with same urls...
             cache = {}
