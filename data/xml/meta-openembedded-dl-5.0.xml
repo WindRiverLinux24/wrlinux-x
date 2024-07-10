@@ -190,3 +190,4 @@
     <project name="external/yocto/github.com.DaveGamble.cJSON" remote="base" path="layers/wrlinux-src-dl/git/github.com.DaveGamble.cJSON.git" bare="True"/>
     <project name="external/yocto/github.com.dasbus-project.dasbus" remote="base" path="layers/wrlinux-src-dl/git/github.com.dasbus-project.dasbus.git" bare="True"/>
     <project name="external/yocto/github.com.OpenSC.OpenSC" remote="base" path="layers/wrlinux-src-dl/git/github.com.OpenSC.OpenSC" bare="True"/>
+    <project name="external/yocto/github.com.ImageMagick.ImageMagick" remote="base" path="layers/wrlinux-src-dl/git/github.com.ImageMagick.ImageMagick.git" bare="True"/>
