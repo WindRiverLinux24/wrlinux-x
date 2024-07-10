@@ -13,5 +13,6 @@
   "meta-tensorflow": ["meta-tensorflow-dl-5.0"],
   "meta-tpm2": ["meta-secure-core-dl"],
   "meta-virtualization": ["meta-virtualization-dl-5.0"],
-  "openembedded-core": ["oe-core-dl-5.0", "wrlinux-src-dl"]
+  "openembedded-core": ["oe-core-dl-5.0", "wrlinux-src-dl"],
+  "wr-sbom": ["wr-sbom-dl-5.0"]
 }
