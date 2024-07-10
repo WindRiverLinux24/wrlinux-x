@@ -1,3 +1,1 @@
-    <project name="external/yocto/github.com.intel.Intel-Linux-Processor-Microcode-Data-Files" remote="base" path="layers/wrlinux-src-dl/git/github.com.intel.Intel-Linux-Processor-Microcode-Data-Files.git" bare="True"/>
-    <project name="external/yocto/github.com.intel.ittapi" remote="base" path="layers/wrlinux-src-dl/git/github.com.intel.ittapi.git" bare="True"/>
-    <project name="external/yocto/github.com.intel.intel-cmt-cat" remote="base" path="layers/wrlinux-src-dl/git/github.com.intel.intel-cmt-cat" bare="True"/>
+    <project name="layers/meta-intel-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-intel-gitshallow-dl"/>

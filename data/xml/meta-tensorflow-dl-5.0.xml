@@ -1,3 +1,1 @@
-    <project name="external/yocto/github.com.tensorflow.tensorflow" remote="base" path="layers/wrlinux-src-dl/git/github.com.tensorflow.tensorflow.git" bare="True"/>
-    <project name="external/yocto/github.com.tensorflow.estimator" remote="base" path="layers/wrlinux-src-dl/git/github.com.tensorflow.estimator.git" bare="True"/>
-    <project name="external/yocto/github.com.keras-team.tf-keras" remote="base" path="layers/wrlinux-src-dl/git/github.com.keras-team.tf-keras.git" bare="True"/>
+    <project name="layers/meta-tensorflow-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-tensorflow-gitshallow-dl"/>

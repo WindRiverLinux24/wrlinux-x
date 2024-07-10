@@ -1,1 +1,1 @@
-    <project name="external/yocto/git.yoctoproject.org.poky" remote="base" path="layers/wrlinux-src-dl/git/git.yoctoproject.org.poky" bare="True"/>
+    <project name="layers/meta-lat-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-lat-gitshallow-dl"/>

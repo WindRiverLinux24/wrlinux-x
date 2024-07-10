@@ -1,1 +1,1 @@
-    <project name="external/yocto/github.com.ansible.ansible" remote="base" path="layers/wrlinux-src-dl/git/github.com.ansible.ansible.git" bare="True"/>
+    <project name="layers/meta-cloud-services-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-cloud-services-gitshallow-dl"/>

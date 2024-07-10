@@ -1,10 +1,1 @@
-    <project name="external/yocto/github.com.jiazhang0.cryptfs-tpm2" remote="base" path="layers/wrlinux-src-dl/git/github.com.jiazhang0.cryptfs-tpm2.git" bare="True"/>
-    <project name="external/yocto/github.com.archiecobbs.mtree-port" remote="base" path="layers/wrlinux-src-dl/git/github.com.archiecobbs.mtree-port.git" bare="True"/>
-    <project name="external/yocto/git.code.sf.net.p.linux-ima.ima-evm-utils" remote="base" path="layers/wrlinux-src-dl/git/git.code.sf.net.p.linux-ima.ima-evm-utils.git" bare="True"/>
-    <project name="external/yocto/github.com.mgerstner.ima-inspect" remote="base" path="layers/wrlinux-src-dl/git/github.com.mgerstner.ima-inspect.git" bare="True"/>
-    <project name="external/yocto/github.com.jiazhang0.libsign" remote="base" path="layers/wrlinux-src-dl/git/github.com.jiazhang0.libsign.git" bare="True"/>
-    <project name="external/yocto/git.kernel.org.pub.scm.linux.kernel.git.jejb.sbsigntools" remote="base" path="layers/wrlinux-src-dl/git/git.kernel.org.pub.scm.linux.kernel.git.jejb.sbsigntools.git" bare="True"/>
-    <project name="external/yocto/github.com.rustyrussell.ccan" remote="base" path="layers/wrlinux-src-dl/git/github.com.rustyrussell.ccan.git" bare="True"/>
-    <project name="external/yocto/github.com.jiazhang0.SELoader" remote="base" path="layers/wrlinux-src-dl/git/github.com.jiazhang0.SELoader.git" bare="True"/>
-    <project name="external/yocto/git.kernel.org.pub.scm.linux.kernel.git.jejb.efitools" remote="base" path="layers/wrlinux-src-dl/git/git.kernel.org.pub.scm.linux.kernel.git.jejb.efitools.git" bare="True"/>
-    <project name="external/yocto/github.com.lcp.mokutil" remote="base" path="layers/wrlinux-src-dl/git/github.com.lcp.mokutil.git" bare="True"/>
+    <project name="layers/meta-secure-core-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-secure-core-gitshallow-dl"/>
