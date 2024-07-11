@@ -24,6 +24,7 @@ import sys
 import time
 import re
 import json
+import glob
 
 from urllib.parse import urlparse
 
@@ -319,6 +320,9 @@ class Setup():
         self.check_project_path()
 
         self.repo_sync()
+
+        if self.mirror != True:
+            self.update_symlinks()
 
         if self.mirror_as_premirrors:
             if self.mirror:
@@ -1642,6 +1646,44 @@ class Setup():
             self.call_initial_repo_sync(cmd)
 
         logger.debug('Done')
+
+    def update_symlinks(self):
+        """
+        Create symlinks from wrlinux-src-dl/git/* to gitshallow-dl/* so that
+        the later one doesn't have to be in PREMIRRORS.
+        """
+        if self.dl_layers == -1:
+            return
+
+        logger.info('Updating symlinks...')
+
+        wrlinux_src_dl_git = os.path.join(self.project_dir, 'layers/wrlinux-src-dl/git')
+        if not os.path.exists(wrlinux_src_dl_git):
+            logger.warning('Failed to find %s' % wrlinux_src_dl_git)
+            return
+
+        # Remove invalid symlinks
+        for sym in os.listdir(wrlinux_src_dl_git):
+            sym_path  = os.path.join(wrlinux_src_dl_git, sym)
+            if not os.path.exists(sym_path):
+                logger.debug('Removing invalid symlink %s' % sym)
+                os.unlink(sym_path)
+
+        # Create new symlinks
+        saved_cwd = os.getcwd()
+        try:
+            os.chdir(wrlinux_src_dl_git)
+            wildcard = '../*-gitshallow-dl/git*.tar*'
+            shallows = glob.glob(wildcard)
+            for shallow in shallows:
+                dst = os.path.basename(shallow)
+                if not os.path.exists(dst):
+                    os.symlink(shallow, dst)
+        except Exception as e:
+            raise
+        finally:
+            os.chdir(saved_cwd)
+        logger.info('Done')
 
     def __check_and_update_layerseries_compat(self, project_local_layer_path, data_local_layer_path):
         project_layer_conf = os.path.join(project_local_layer_path, 'conf/layer.conf')
