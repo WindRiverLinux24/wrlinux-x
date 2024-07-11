@@ -5,7 +5,6 @@
   "meta-cloud-services": ["meta-cloud-services-dl-5.0"],
   "meta-intel": ["meta-intel-dl"],
   "meta-intel-qat": ["meta-intel-qat-dl"],
-  "meta-iot-cloud": ["meta-iot-cloud-dl"],
   "meta-mingw": ["meta-mingw-dl"],
   "meta-oe": ["meta-openembedded-dl-5.0"],
   "meta-raspberrypi": ["meta-raspberrypi-dl-5.0"],

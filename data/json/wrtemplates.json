@@ -3,15 +3,8 @@
     {
       "name": "feature/aws",
       "layer_dependencies": [
-        "meta-iot-cloud",
         "meta-aws"
       ]
-    },
-    {   
-      "name": "feature/azure",
-      "layer_dependencies": [
-        "meta-iot-cloud"
-      ]   
     },
     {
       "name": "feature/buildah",
