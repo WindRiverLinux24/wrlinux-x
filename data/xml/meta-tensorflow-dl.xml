@@ -1,1 +1,2 @@
+    <project name="layers/meta-tensorflow-dl-5.0" remote="base" path="layers/meta-tensorflow-dl"/>
     <project name="layers/meta-tensorflow-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-tensorflow-gitshallow-dl"/>

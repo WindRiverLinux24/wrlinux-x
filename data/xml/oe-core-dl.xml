@@ -1,1 +1,2 @@
+    <project name="layers/oe-core-dl-5.0" remote="base" path="layers/oe-core-dl"/>
     <project name="layers/oe-core-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/oe-core-gitshallow-dl"/>

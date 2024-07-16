@@ -1,1 +1,2 @@
+    <project name="layers/meta-anaconda-dl" remote="base" path="layers/meta-anaconda-dl"/>
     <project name="layers/meta-anaconda-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-anaconda-gitshallow-dl"/>

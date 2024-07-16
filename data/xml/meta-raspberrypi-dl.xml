@@ -1,1 +1,2 @@
+    <project name="layers/meta-raspberrypi-dl-5.0" remote="base" path="layers/meta-raspberrypi-dl"/>
     <project name="layers/meta-raspberrypi-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-raspberrypi-gitshallow-dl"/>

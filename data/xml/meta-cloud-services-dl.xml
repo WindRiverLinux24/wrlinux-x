@@ -1,1 +1,2 @@
+    <project name="layers/meta-cloud-services-dl-5.0" remote="base" path="layers/meta-cloud-services-dl"/>
     <project name="layers/meta-cloud-services-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-cloud-services-gitshallow-dl"/>

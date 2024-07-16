@@ -1,17 +1,3 @@
 {
-  "meta-anaconda": ["meta-anaconda-dl"],
-  "meta-chromium": ["meta-browser-dl-5.0"],
-  "meta-clang": ["meta-clang-dl"],
-  "meta-cloud-services": ["meta-cloud-services-dl-5.0"],
-  "meta-intel": ["meta-intel-dl"],
-  "meta-intel-qat": ["meta-intel-qat-dl"],
-  "meta-mingw": ["meta-mingw-dl"],
-  "meta-oe": ["meta-openembedded-dl-5.0"],
-  "meta-raspberrypi": ["meta-raspberrypi-dl-5.0"],
-  "meta-security": ["meta-security-dl"],
-  "meta-tensorflow": ["meta-tensorflow-dl-5.0"],
-  "meta-tpm2": ["meta-secure-core-dl"],
-  "meta-virtualization": ["meta-virtualization-dl-5.0"],
-  "openembedded-core": ["oe-core-dl-5.0", "wrlinux-src-dl"],
-  "wr-sbom": ["wr-sbom-dl-5.0"]
+  "openembedded-core": ["wrlinux-src-dl"]
 }
