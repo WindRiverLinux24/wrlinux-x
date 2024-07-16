@@ -1657,22 +1657,23 @@ class Setup():
 
     def update_symlinks(self):
         """
-        Create symlinks from wrlinux-src-dl/git/* to gitshallow-dl/* so that
-        the later one doesn't have to be in PREMIRRORS.
+        Create symlinks in wrlinux-src-dl/downloads/* for the files from
+        gitshallow-dl/*  and ../*-dl*/downloads/ so that there will be only one
+        PREMIRRORs.
         """
         if self.dl_layers == -1:
             return
 
         logger.info('Updating symlinks...')
 
-        wrlinux_src_dl_git = os.path.join(self.project_dir, 'layers/wrlinux-src-dl/git')
-        if not os.path.exists(wrlinux_src_dl_git):
-            logger.warning('Failed to find %s' % wrlinux_src_dl_git)
+        wrlinux_src_dl_downloads = os.path.join(self.project_dir, 'layers/wrlinux-src-dl/downloads')
+        if not os.path.exists(wrlinux_src_dl_downloads):
+            logger.warning('Failed to find %s' % wrlinux_src_dl_downloads)
             return
 
         # Remove invalid symlinks
-        for sym in os.listdir(wrlinux_src_dl_git):
-            sym_path  = os.path.join(wrlinux_src_dl_git, sym)
+        for sym in os.listdir(wrlinux_src_dl_downloads):
+            sym_path  = os.path.join(wrlinux_src_dl_downloads, sym)
             if not os.path.exists(sym_path):
                 logger.debug('Removing invalid symlink %s' % sym)
                 os.unlink(sym_path)
@@ -1680,13 +1681,14 @@ class Setup():
         # Create new symlinks
         saved_cwd = os.getcwd()
         try:
-            os.chdir(wrlinux_src_dl_git)
+            os.chdir(wrlinux_src_dl_downloads)
             wildcard = '../*-gitshallow-dl/git*.tar*'
-            shallows = glob.glob(wildcard)
-            for shallow in shallows:
-                dst = os.path.basename(shallow)
-                if not os.path.exists(dst):
-                    os.symlink(shallow, dst)
+            for wildcard in ('../*-gitshallow-dl/git*.tar*', '../../*dl/downloads/*'):
+                files = glob.glob(wildcard)
+                for f in files:
+                    dst = os.path.basename(f)
+                    if not os.path.exists(dst):
+                        os.symlink(f, dst)
         except Exception as e:
             raise
         finally:
