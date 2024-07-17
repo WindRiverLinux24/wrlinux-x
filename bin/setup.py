@@ -38,6 +38,7 @@ from layer_index import Layer_Index
 
 import settings
 import sanity
+import filecmp
 
 import xml.etree.ElementTree as ET
 
@@ -190,6 +191,11 @@ class Setup():
         self.premirrors_dl = os.path.join(self.project_dir, 'premirrors-dl')
         self.premirrors_dl_downloads = os.path.join(self.premirrors_dl, 'downloads')
 
+        # The bare repo
+        self.manifest_dir_bare = os.path.join(self.project_dir, '.repo/manifests.git')
+        # The cloned repo
+        self.manifest_dir = os.path.join(self.project_dir, '.repo/manifests')
+
     def exit(self, ret=0):
         logger.debug("setup.py finished (ret=%s)" % (ret))
         sys.exit(ret)
@@ -333,12 +339,11 @@ class Setup():
         self.exit(0)
 
     def check_project_path(self):
-        self.manifest_dir = os.path.join(self.project_dir, '.repo/manifests.git')
         project_dir_last = ""
-        if os.path.exists(self.manifest_dir):
+        if os.path.exists(self.manifest_dir_bare):
             cmd = [self.tools['git'], 'config', '--get', 'remote.origin.url']
             try:
-                p = subprocess.run(cmd, check=True, cwd=self.manifest_dir, stdout=subprocess.PIPE)
+                p = subprocess.run(cmd, check=True, cwd=self.manifest_dir_bare, stdout=subprocess.PIPE)
                 project_dir_last = p.stdout.decode('utf-8').strip()
             except Exception as e:
                 logger.warning('Failed to run "%s": %s' % (' '.join(cmd), e))
@@ -348,7 +353,7 @@ class Setup():
             logger.info('project dir has been changed from %s to %s' % (project_dir_last, self.project_dir))
             logger.info('Updating config files for new project dir...')
             cmd = [self.tools['git'], 'config', 'remote.origin.url', self.project_dir]
-            subprocess.run(cmd, cwd=self.manifest_dir)
+            subprocess.run(cmd, cwd=self.manifest_dir_bare)
 
     def load_mirror_index(self, remote_mirror, folder=""):
         # See if there is a mirror index available from the BASE_URL
@@ -1627,17 +1632,20 @@ class Setup():
 
         self.repo_dir = os.path.join(self.project_dir, self.check_repo_install_dir)
         if os.path.exists(self.repo_dir):
+            default_xml_manifest = os.path.join(self.manifest_dir, 'default.xml')
+            # Re-init when needed
+            if os.path.exists(default_xml_manifest):
+                if not filecmp.cmp(self.default_xml, default_xml_manifest):
+                    self.call_repo_init()
+            else:
+                self.call_repo_init()
+
             checkout_to_repo_branch()
             cmd = ['-j', self.jobs]
             self.call_repo_sync(cmd)
         else:
             # repo init
-            cmd = ['-m', self.default_xml, '-u',  self.project_dir]
-            if self.mirror == True:
-                cmd.append('--mirror')
-
-            cmd.append('--no-repo-verify')
-            self.call_repo_init(cmd)
+            self.call_repo_init()
 
             checkout_to_repo_branch()
 
@@ -1820,14 +1828,17 @@ class Setup():
             os.environ["SSL_CERT_FILE"] = fn
             os.environ["SSL_CERT_DIR"] = dn
 
-    def call_repo_init(self, args):
+    def call_repo_init(self):
         logger.debug('Starting')
         repo = self.tools['repo']
         directory = os.path.join(self.project_dir, self.check_repo_install_dir)
-        if os.path.exists(directory):
-            logger.info('Done: detected repo init already run since %s exists' % directory)
-            return
-        cmd = [repo, 'init', '--no-clone-bundle']
+
+        cmd = [repo, 'init', '--no-clone-bundle', '-m', self.default_xml, \
+                '-u',  self.project_dir, '--no-repo-verify']
+
+        if self.mirror == True:
+            cmd.append('--mirror')
+
         if self.depth:
             cmd.append(self.depth)
         if self.repo_url:
@@ -1838,7 +1849,6 @@ class Setup():
         if self.repo_verbose is not True and self.quiet == self.default_repo_quiet:
             cmd.append(self.quiet)
             log_it = 0
-        cmd.extend(args)
         logger.debug("cmd: %s" % cmd)
         try:
             utils_setup.run_cmd(cmd, environment=self.env, log=log_it)
