@@ -1709,7 +1709,7 @@ class Setup():
             cwd = os.path.dirname(hook)
             cwd = os.path.dirname(cwd)
             try:
-                utils_setup.run_cmd(cmd, environment=self.env, cwd=cwd)
+                utils_setup.run_cmd(cmd, environment=self.env, cwd=cwd, log=2)
             except Exception as e:
                 raise
         logger.info('Done')
