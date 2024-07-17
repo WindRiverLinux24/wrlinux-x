@@ -1,1 +1,3 @@
     <project name="layers/meta-browser-dl-5.0" remote="base" path="layers/meta-browser-dl"/>
+    <project name="layers/meta-browser-dl-5.0.part01" remote="base" path="layers/meta-browser-dl/meta-browser-dl.part01"/>
+    <project name="layers/meta-browser-dl-5.0.part02" remote="base" path="layers/meta-browser-dl/meta-browser-dl.part02"/>
