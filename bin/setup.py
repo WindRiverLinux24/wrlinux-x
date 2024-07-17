@@ -328,6 +328,7 @@ class Setup():
         self.repo_sync()
 
         if self.mirror != True:
+            self.layer_post_hooks()
             self.update_symlinks()
 
         if self.mirror_as_premirrors:
@@ -1694,6 +1695,25 @@ class Setup():
         finally:
             os.chdir(saved_cwd)
         logger.info('Done')
+
+    def layer_post_hooks(self):
+        """
+        Run post hooks in layer (layers/*/post_hook/*)
+        """
+        logger.info('Running post hooks in layer...')
+
+        wildcard = os.path.join(self.project_dir, "layers/*/post_hook/*")
+        for hook in glob.glob(wildcard):
+            cmd = [hook]
+            # Run hook in layer's top dir
+            cwd = os.path.dirname(hook)
+            cwd = os.path.dirname(cwd)
+            try:
+                utils_setup.run_cmd(cmd, environment=self.env, cwd=cwd)
+            except Exception as e:
+                raise
+        logger.info('Done')
+
 
     def __check_and_update_layerseries_compat(self, project_local_layer_path, data_local_layer_path):
         project_layer_conf = os.path.join(project_local_layer_path, 'conf/layer.conf')
