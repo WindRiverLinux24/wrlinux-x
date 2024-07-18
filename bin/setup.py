@@ -1637,9 +1637,9 @@ class Setup():
             # Re-init when needed
             if os.path.exists(default_xml_manifest):
                 if not filecmp.cmp(self.default_xml, default_xml_manifest):
-                    self.call_repo_init()
+                    self.call_repo_init(first_init=False)
             else:
-                self.call_repo_init()
+                self.call_repo_init(first_init=False)
 
             checkout_to_repo_branch()
             cmd = ['-j', self.jobs]
@@ -1850,7 +1850,7 @@ class Setup():
             os.environ["SSL_CERT_FILE"] = fn
             os.environ["SSL_CERT_DIR"] = dn
 
-    def call_repo_init(self):
+    def call_repo_init(self, first_init=True):
         logger.debug('Starting')
         repo = self.tools['repo']
         directory = os.path.join(self.project_dir, self.check_repo_install_dir)
@@ -1858,7 +1858,7 @@ class Setup():
         cmd = [repo, 'init', '--no-clone-bundle', '-m', self.default_xml, \
                 '-u',  self.project_dir, '--no-repo-verify']
 
-        if self.mirror == True:
+        if self.mirror == True and first_init:
             cmd.append('--mirror')
 
         if self.depth:
