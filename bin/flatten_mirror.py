@@ -450,7 +450,11 @@ def main():
             for name in transform_xml(xml, xml_dst):
                 dst = os.path.join(dest, os.path.basename(name))
                 if not (name in processed_list or name + '.git' in processed_list):
-                    push_or_copy(layer_name, name, dst)
+                    # Push required branch for dl layers rather than copy
+                    if utils_setup.is_dl_layer(os.path.basename(name)):
+                        push_or_copy(layer_name, name, dst, base_branch)
+                    else:
+                        push_or_copy(layer_name, name, dst)
                     processed_list.append(name)
 
         # dst_base_mirror may not exist if we're subsetting...
