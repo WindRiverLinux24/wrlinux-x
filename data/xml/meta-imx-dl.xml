@@ -1,5 +1,1 @@
-        <project name="external/yocto/github.com.nxp-imx.imx-optee-os" remote="base" path="layers/wrlinux-src-dl/git/github.com.nxp-imx.imx-optee-os.git" bare="True"/>
-        <project name="external/yocto/github.com.nxp-imx.imx-optee-test" remote="base" path="layers/wrlinux-src-dl/git/github.com.nxp-imx.imx-optee-test.git" bare="True"/>
-        <project name="external/yocto/github.com.nxp-imx.imx-optee-client" remote="base" path="layers/wrlinux-src-dl/git/github.com.nxp-imx.imx-optee-client.git" bare="True"/>
-        <project name="external/yocto/github.com.nxp-imx.isp-vvcam" remote="base" path="layers/wrlinux-src-dl/git/github.com.nxp-imx.isp-vvcam.git" bare="True"/>
-        <project name="external/yocto/github.com.nxp-imx.uboot-imx" remote="base" path="layers/wrlinux-src-dl/git/github.com.nxp-imx.uboot-imx.git" bare="True"/>
+    <project name="layers/meta-imx-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-imx-gitshallow-dl"/>
