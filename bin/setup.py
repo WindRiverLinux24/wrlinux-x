@@ -1148,7 +1148,7 @@ class Setup():
                     fxml.write(line)
                 fbase.close()
 
-        def close_xml_tag(name, url, remote, path, revision):
+        def close_xml_tag():
             fxml.write('    </project>\n')
 
         def add_xml(name, url, remote, path, revision):
@@ -1176,7 +1176,7 @@ class Setup():
         def write_xml(name, url, remote, path, revision):
             open_xml_tag(name, url, remote, path, revision)
             inc_xml(name, url, remote, path, revision)
-            close_xml_tag(name, url, remote, path, revision)
+            close_xml_tag()
             add_xml(name, url, remote, path, revision)
 
         if self.mirror == True and self.buildtools_branch:
@@ -1291,7 +1291,7 @@ class Setup():
                 for entry in cache[url]:
                     inc_xml(entry['name'], url, remote, path, revision)
 
-                close_xml_tag(name, url, remote, path, revision)
+                close_xml_tag()
 
                 for entry in cache[url]:
                     add_xml(entry['name'], url, remote, path, revision)
@@ -1314,7 +1314,7 @@ class Setup():
             revision = remote_layer.get('branch')
 
             open_xml_tag(name, url, remote, path, revision)
-            close_xml_tag(name, url, remote, path, revision)
+            close_xml_tag()
 
         fxml.write('</manifest>\n')
         fxml.close()
