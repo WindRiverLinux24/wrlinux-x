@@ -1311,10 +1311,31 @@ class Setup():
             xml_line += '    </project>\n'
             self.xml_lines_out.append(xml_line)
 
+        # Sort by path like repo does
+        def get_xml_path(xml_line):
+            root = ET.fromstring(xml_line)
+            return root.attrib['path']
         # Remove duplicates
         self.xml_lines_out = list(set(self.xml_lines_out))
+        self.xml_lines_out.sort(key=get_xml_path)
 
-        fxml.write(''.join(self.xml_lines_out))
+        # Make the larger one download earlier
+        large_lines = []
+        prioritized_lines = []
+        for line in self.xml_lines_out[:]:
+            root = ET.fromstring(line)
+            name = os.path.basename(root.attrib['name'])
+            if name.startswith('linux-yocto'):
+                prioritized_lines.append(line)
+                self.xml_lines_out.remove(line)
+            elif utils_setup.is_dl_layer(name):
+                large_lines.append(line)
+                self.xml_lines_out.remove(line)
+
+        prioritized_lines += large_lines
+        prioritized_lines += self.xml_lines_out
+
+        fxml.write(''.join(prioritized_lines))
         fxml.write('</manifest>\n')
         fxml.close()
 
