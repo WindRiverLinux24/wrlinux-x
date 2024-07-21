@@ -196,6 +196,9 @@ class Setup():
         # The cloned repo
         self.manifest_dir = os.path.join(self.project_dir, '.repo/manifests')
 
+        # The xml lines which will be written to default.xml
+        self.xml_lines_out = []
+
     def exit(self, ret=0):
         logger.debug("setup.py finished (ret=%s)" % (ret))
         sys.exit(ret)
@@ -1133,25 +1136,24 @@ class Setup():
 
         def open_xml_tag(name, url, remote, path, revision):
             # Full clone if self.dl_layers is 0
+            xml_line = '    <project name="%s" remote="%s" path="%s" revision="%s">\n' % (url, remote, path, revision)
             if (not self.dl_layers in (-1, 0)) and (name.endswith('-dl') or '-dl-' in name):
-                fxml.write('    <project name="%s" remote="%s" path="%s" revision="%s" clone-depth="%d">\n' % (url, remote, path, revision, self.dl_layers))
-            else:
-                fxml.write('    <project name="%s" remote="%s" path="%s" revision="%s">\n' % (url, remote, path, revision))
+                xml_line += ' clone-depth="%d">\n' % self.dl_layers
+            return xml_line
 
-        def inc_xml(name, url, remote, path, revision):
+        def inc_xml(name):
             # incfile is included inline and has to work as elements of the 'project'
+            ret = ''
             incfile = os.path.join(self.xml_dir, '%s.inc' % (name))
             logger.debug('Looking for %s' % (incfile))
             if os.path.exists(incfile):
                 fbase = open(incfile, 'r')
                 for line in fbase:
-                    fxml.write(line)
+                    ret += line
                 fbase.close()
+            return ret
 
-        def close_xml_tag():
-            fxml.write('    </project>\n')
-
-        def add_xml(name, url, remote, path, revision):
+        def add_xml(name, url):
             # xmlfile is included after the entry and is completely standalone
             xmlfile_list = [os.path.join(self.xml_dir, '%s.xml' % (name))]
 
@@ -1162,28 +1164,20 @@ class Setup():
             if self.dl_layers != -1 and not utils_setup.is_dl_layer(name):
                 xmlfile_dl = os.path.join(self.xml_dir, '%s-dl.xml' % (os.path.basename(url)))
                 xmlfile_list.append(xmlfile_dl)
-            fxml.seek(0)
-            fxml_lines = fxml.readlines()
             for xmlfile in xmlfile_list:
                 logger.debug('Looking for %s' % (xmlfile))
                 if os.path.exists(xmlfile):
                     fbase = open(xmlfile, 'r')
                     for line in fbase:
-                        if not line in fxml_lines:
-                            fxml.write(line)
+                        self.xml_lines_out.append(line)
                     fbase.close()
 
-        def write_xml(name, url, remote, path, revision):
-            open_xml_tag(name, url, remote, path, revision)
-            inc_xml(name, url, remote, path, revision)
-            close_xml_tag()
-            add_xml(name, url, remote, path, revision)
-
         if self.mirror == True and self.buildtools_branch:
-            if self.buildtools_remote:
-                write_xml('buildtools', self.buildtools_remote, 'base', self.buildtools_remote, self.buildtools_branch)
-            if self.another_buildtools_remote:
-                write_xml('buildtools', self.another_buildtools_remote, 'base', self.another_buildtools_remote, self.buildtools_branch)
+            for bt in (self.buildtools_remote, self.another_buildtools_remote):
+                if bt:
+                    xml_line = open_xml_tag('buildtools', bt, 'base', bt, self.buildtools_branch)
+                    xml_line += '    </project>\n'
+                    self.xml_lines_out.append(xml_line)
 
         def process_xml_layers(allLayers):
             def get_cache_entry(name, remote, path, revision):
@@ -1286,15 +1280,15 @@ class Setup():
                 path = cache[url][0]['path']
                 revision = cache[url][0]['revision']
 
-                open_xml_tag(name, url, remote, path, revision)
+                xml_line = open_xml_tag(name, url, remote, path, revision)
+                for entry in cache[url]:
+                    xml_line += inc_xml(entry['name'])
+
+                xml_line += '    </project>\n'
+                self.xml_lines_out.append(xml_line)
 
                 for entry in cache[url]:
-                    inc_xml(entry['name'], url, remote, path, revision)
-
-                close_xml_tag()
-
-                for entry in cache[url]:
-                    add_xml(entry['name'], url, remote, path, revision)
+                    add_xml(entry['name'], url)
 
         allLayers = self.requiredlayers + self.recommendedlayers
 
@@ -1313,9 +1307,14 @@ class Setup():
             path = remote_layer.get('path')
             revision = remote_layer.get('branch')
 
-            open_xml_tag(name, url, remote, path, revision)
-            close_xml_tag()
+            xml_line = open_xml_tag(name, url, remote, path, revision)
+            xml_line += '    </project>\n'
+            self.xml_lines_out.append(xml_line)
 
+        # Remove duplicates
+        self.xml_lines_out = list(set(self.xml_lines_out))
+
+        fxml.write(''.join(self.xml_lines_out))
         fxml.write('</manifest>\n')
         fxml.close()
 
