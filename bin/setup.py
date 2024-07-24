@@ -1134,11 +1134,17 @@ class Setup():
                 continue
             fxml.write('    <remote  name="%s" fetch="%s"/>\n' % (remote, self.remotes[remote]))
 
-        def open_xml_tag(name, url, remote, path, revision):
+        def add_xml_tag(name, url, remote, path, revision, close=True):
+            xml_line = '    <project name="%s" remote="%s" path="%s"' % (url, remote, path)
+            if revision != self.base_branch:
+                xml_line += ' revision="%s"' % revision
+
             # Full clone if self.dl_layers is 0
-            xml_line = '    <project name="%s" remote="%s" path="%s" revision="%s">\n' % (url, remote, path, revision)
-            if (not self.dl_layers in (-1, 0)) and (name.endswith('-dl') or '-dl-' in name):
-                xml_line += ' clone-depth="%d">\n' % self.dl_layers
+            if (not self.dl_layers in (-1, 0)) and utils_setup.is_dl_layer(name):
+                xml_line += ' clone-depth="%d"' % self.dl_layers
+
+            if close:
+                xml_line += '/>\n'
             return xml_line
 
         def inc_xml(name):
@@ -1175,9 +1181,7 @@ class Setup():
         if self.mirror == True and self.buildtools_branch:
             for bt in (self.buildtools_remote, self.another_buildtools_remote):
                 if bt:
-                    xml_line = open_xml_tag('buildtools', bt, 'base', bt, self.buildtools_branch)
-                    xml_line += '    </project>\n'
-                    self.xml_lines_out.append(xml_line)
+                    self.xml_lines_out.append(add_xml_tag('buildtools', bt, 'base', bt, self.buildtools_branch))
 
         def process_xml_layers(allLayers):
             def get_cache_entry(name, remote, path, revision):
@@ -1280,11 +1284,17 @@ class Setup():
                 path = cache[url][0]['path']
                 revision = cache[url][0]['revision']
 
-                xml_line = open_xml_tag(name, url, remote, path, revision)
+                xml_line = add_xml_tag(name, url, remote, path, revision, False)
+                xml_line_inc = ''
                 for entry in cache[url]:
-                    xml_line += inc_xml(entry['name'])
+                    xml_line_inc += inc_xml(entry['name'])
 
-                xml_line += '    </project>\n'
+                if xml_line_inc:
+                    xml_line += '>\n'
+                    xml_line += xml_line_inc
+                    xml_line += '    </project>\n'
+                else:
+                    xml_line += '/>\n'
                 self.xml_lines_out.append(xml_line)
 
                 for entry in cache[url]:
@@ -1307,9 +1317,7 @@ class Setup():
             path = remote_layer.get('path')
             revision = remote_layer.get('branch')
 
-            xml_line = open_xml_tag(name, url, remote, path, revision)
-            xml_line += '    </project>\n'
-            self.xml_lines_out.append(xml_line)
+            self.xml_lines_out.append(add_xml_tag(name, url, remote, path, revision))
 
         # Sort by path like repo does
         def get_xml_path(xml_line):

@@ -165,10 +165,11 @@ def read_default_xml(xml_file):
             remote_base_fetch = child.attrib['fetch']
         if 'default' == child.tag and 'base' == child.attrib['remote']:
             remote_base_revision = child.attrib['revision']
-        if 'default' == child.tag and 'base' == child.attrib['remote']:
-            remote_base_revision = child.attrib['revision']
         if 'project' == child.tag and child.attrib['name'].endswith('bitbake'):
-            bitbake_branch = child.attrib['revision']
+            if 'revision' in child.attrib:
+                bitbake_branch = child.attrib['revision']
+            else:
+                bitbake_branch = remote_base_revision
             bitbake_path=child.attrib['name']
     return remote_base_fetch,remote_base_revision,bitbake_branch,bitbake_path
 
