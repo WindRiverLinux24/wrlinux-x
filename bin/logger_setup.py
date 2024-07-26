@@ -133,14 +133,15 @@ class LoggerOut:
     def __init__(self, logger, isatty):
         self.logger = logger
         self.tty = isatty
+        self.buffered_message = ""
 
     def write(self, message):
-        # We skip any lines that are simply a '\n'.
-        # The logger always ends in the equivalent of a \n, and many programs
-        # seem to like to insert blank lines using '\n' which makes the
-        # logging confusing.
-        if message != '\n':
-            self.logger(message)
+        if message.endswith('\n'):
+            self.buffered_message = self.buffered_message + message[:-1]
+            self.logger(self.buffered_message)
+            self.buffered_message = ""
+        else:
+            self.buffered_message = self.buffered_message + message
 
     def flush(self):
         # We print all messages immediately, so flush is a no-op.
