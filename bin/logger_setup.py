@@ -27,8 +27,7 @@ import logging
 import sys
 import time
 
-FILE_LOG_FORMAT = '%(asctime)s %(levelname)8s [%(filename)s:%(lineno)s' \
-                + ' - %(funcName)20s(): %(message)s'
+FILE_LOG_FORMAT = '%(asctime)s %(levelname)s: %(message)s'
 
 # INFO = 20
 PLAIN_LOG_LEVEL = 15
@@ -83,7 +82,7 @@ def setup_logging_file(log_file):
     """Add a logging.FileHandler to the logger"""
     global logger
     logger.debug("Logging to %s" % log_file)
-    formatter = FileFormatter(FILE_LOG_FORMAT)
+    formatter = FileFormatter(FILE_LOG_FORMAT, datefmt="[%Y%m%d%H%M%S]")
     file_h = logging.FileHandler(log_file)
     # Logging timezone is UTC
     file_h.converter = time.gmtime
