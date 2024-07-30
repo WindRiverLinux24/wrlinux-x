@@ -67,12 +67,11 @@ def run_cmd(cmd, environment=None, cwd=None, log=1, expected_ret=0, err=b'GitErr
                 logger.debug('cmd "%s" returned %d' % (' '.join(cmd), ret.returncode))
 
         msg = ''
-        if log:
-            if cwd:
-                msg += cwd + ': '
-            msg += " ".join(cmd) + '\n'
-            msg += '\n'.join(err_msg)
-            msg += '\n'
+        if cwd:
+            msg += cwd + ': '
+        msg += " ".join(cmd) + '\n'
+        msg += '\n'.join(err_msg)
+        msg += '\n'
         raise Exception(msg)
     logger.debug('Finished running cmd: "%s"' % repr(cmd))
 
