@@ -16,6 +16,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 # Please keep these sorted.
+import errno
 import logging
 import os
 import shutil
@@ -208,8 +209,17 @@ class Setup():
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)
 
-        log_file = '%s/%s.log' % (log_dir, time.strftime('%Y-%m-%d-%H:%M:%S+0000', time.gmtime()))
+        log_file = '%s/%s.log' % (log_dir, time.strftime('%Y%m%d%H%M%S', time.localtime()))
         logger_setup.setup_logging_file(log_file)
+
+        # Create symlink setup-latest.log
+        loglink = os.path.join(os.path.dirname(log_file), 'setup-latest.log')
+        try:
+            os.unlink(loglink)
+        except OSError as exc:
+            if exc.errno != errno.ENOENT:
+                raise
+        os.symlink(os.path.basename(log_file), loglink)
 
     def main(self, orig_args):
         parser = Argparse_Wrl(self)
