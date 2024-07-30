@@ -61,9 +61,6 @@ def setup_logging(level=PLAIN_LOG_LEVEL, output=sys.stdout):
     stream_h = logging.StreamHandler(output)
     stream_h.setFormatter(formatter)
 
-    # Logging timezone is UTC
-    stream_h.converter = time.gmtime
-
     logger.setLevel(level)
     logger.addHandler(stream_h)
 
@@ -84,8 +81,6 @@ def setup_logging_file(log_file):
     logger.debug("Logging to %s" % log_file)
     formatter = FileFormatter(FILE_LOG_FORMAT, datefmt="[%Y%m%d%H%M%S]")
     file_h = logging.FileHandler(log_file)
-    # Logging timezone is UTC
-    file_h.converter = time.gmtime
     file_h.setFormatter(formatter)
     file_h.setLevel(TO_FILE_LOG_LEVEL)
     logger.addHandler(file_h)

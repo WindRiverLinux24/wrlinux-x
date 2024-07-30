@@ -326,6 +326,9 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+# Correct local timezone file for logging
+export TZ="/etc/localtime"
+
 # Python 3 required utf-8 support to work properly, adjust the LANG to en_US.UTF-8.
 export LANG='en_US.UTF-8'
 
