@@ -1905,13 +1905,9 @@ class Setup():
             cmd.extend(['--repo-url', self.repo_url])
         if self.repo_rev:
             cmd.extend(['--repo-branch', self.repo_rev])
-        log_it = 1
-        if self.repo_verbose is not True and self.quiet == self.default_repo_quiet:
-            cmd.append(self.quiet)
-            log_it = 0
         logger.debug("cmd: %s" % cmd)
         try:
-            utils_setup.run_cmd(cmd, environment=self.env, log=log_it)
+            utils_setup.run_cmd(cmd, environment=self.env)
         except Exception as e:
             raise
         logger.debug('Done')
