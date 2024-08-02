@@ -31,7 +31,7 @@ def run_cmd(cmd, environment=None, cwd=None, log=1, expected_ret=0, err=b'GitErr
     if cwd:
         logger.debug('From %s' % cwd)
 
-    # log 0 - output goes to stdout/stderr, not logged
+    # log 0 - send stdout to Exception, not logged stderr
     # log 1 - send output to plain
     # log 2 - send output to debug
     if log == 1 or log == 2:
@@ -52,8 +52,8 @@ def run_cmd(cmd, environment=None, cwd=None, log=1, expected_ret=0, err=b'GitErr
                 elif log == 2:
                     logger.debug("%s" % output.decode('utf-8'))
     else:
-        logger.debug('output not logged for this command (%s) without verbose flag (-v).' % (cmd))
-        ret = subprocess.Popen(cmd, env=environment, cwd=cwd, close_fds=True, stderr=stderr, stdout=stdout)
+        logger.debug('stderr not logged for this command (%s)' % (cmd))
+        ret = subprocess.Popen(cmd, env=environment, cwd=cwd, stderr=None, stdout=subprocess.PIPE, text=True)
 
     ret.wait()
     if ret.returncode != expected_ret:
@@ -65,6 +65,10 @@ def run_cmd(cmd, environment=None, cwd=None, log=1, expected_ret=0, err=b'GitErr
                 logger.critical('cmd "%s" returned %d' % (' '.join(cmd), ret.returncode))
             else:
                 logger.debug('cmd "%s" returned %d' % (' '.join(cmd), ret.returncode))
+
+        if log == 0:
+            # Remove '\n' in the tail of each line
+            err_msg += [line[:-1] for line in ret.stdout.readlines()]
 
         msg = ''
         if cwd:
