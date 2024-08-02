@@ -1703,7 +1703,7 @@ class Setup():
         if self.dl_layers == -1:
             return
 
-        logger.info('Updating symlinks...')
+        logger.plain('Updating symlinks...')
 
         wrlinux_src_dl_downloads = os.path.join(self.project_dir, 'layers/wrlinux-src-dl/downloads')
         if not os.path.exists(wrlinux_src_dl_downloads):
@@ -1732,13 +1732,13 @@ class Setup():
             raise
         finally:
             os.chdir(saved_cwd)
-        logger.info('Done')
+        logger.plain('Done')
 
     def layer_post_hooks(self):
         """
         Run post hooks in layer (layers/*/post_hook/*)
         """
-        logger.info('Running post hooks in layer...')
+        logger.plain('Running post hooks in layer...')
 
         wildcard = os.path.join(self.project_dir, "layers/*/post_hook/*")
         for hook in glob.glob(wildcard):
@@ -1750,7 +1750,7 @@ class Setup():
                 utils_setup.run_cmd(cmd, environment=self.env, cwd=cwd, log=2)
             except Exception as e:
                 raise
-        logger.info('Done')
+        logger.plain('Done')
 
 
     def __check_and_update_layerseries_compat(self, project_local_layer_path, data_local_layer_path):

@@ -102,7 +102,7 @@ def check_hosttools(additions = None):
         logger.error("Required host tools not available: %s" % notfound)
         sys.exit(1)
     else:
-        logger.info("All required host tools are available.")
+        logger.plain("All required host tools are available.")
 
 # allow running sanity checks individually
 if __name__ == '__main__':
