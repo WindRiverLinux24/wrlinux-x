@@ -25,7 +25,6 @@ import sys
 import time
 import re
 import json
-import glob
 
 from urllib.parse import urlparse
 
@@ -1471,7 +1470,10 @@ class Setup():
                 try:
                     path = project.attrib['path']
                     if path and path.startswith('layers/'):
-                        revision = project.attrib['revision'].replace('refs/tags/', '')
+                        if 'revision' in project.attrib:
+                            revision = project.attrib['revision'].replace('refs/tags/', '')
+                        else:
+                            revision = self.base_branch
                         premirrors_dict[name] = revision
                 except Exception as esc:
                     logger.warning('%s: Failed to find revision or path: %s' % (name, esc))
@@ -1512,8 +1514,7 @@ class Setup():
         if os.path.exists(self.premirrors_dl_downloads):
             shutil.rmtree(self.premirrors_dl_downloads)
         os.mkdir(self.premirrors_dl_downloads)
-        cmd = 'cp -alf %s/*-dl*/downloads/* %s' % (self.premirrors_dl, self.premirrors_dl_downloads)
-        subprocess.run(cmd, shell=True)
+        utils_setup.create_symlinks(('../*-dl*/downloads/*', '../*gitshallow-dl*/git*.tar.gz'), self.premirrors_dl_downloads)
         logger.info('The PREMIRROR files are prepared in %s' % self.premirrors_dl_downloads)
 
     def use_mirror_as_premirrors(self):
@@ -1717,21 +1718,8 @@ class Setup():
                 os.unlink(sym_path)
 
         # Create new symlinks
-        saved_cwd = os.getcwd()
-        try:
-            os.chdir(wrlinux_src_dl_downloads)
-            wildcard = '../*-gitshallow-dl/git*.tar*'
-            for wildcard in ('../*-gitshallow-dl/git*.tar*', '../../*dl/downloads/*'):
-                files = glob.glob(wildcard)
-                for f in files:
-                    dst = os.path.basename(f)
-                    if not os.path.exists(dst):
-                        os.symlink(f, dst)
-        except Exception as e:
-            raise
-        finally:
-            os.chdir(saved_cwd)
-        logger.plain('Done')
+        utils_setup.create_symlinks(('../*-gitshallow-dl/git*.tar*', '../../*dl/downloads/*'), wrlinux_src_dl_downloads)
+        logger.info('Done')
 
     def __check_and_update_layerseries_compat(self, project_local_layer_path, data_local_layer_path):
         project_layer_conf = os.path.join(project_local_layer_path, 'conf/layer.conf')

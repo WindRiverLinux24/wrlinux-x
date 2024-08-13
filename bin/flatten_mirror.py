@@ -245,10 +245,8 @@ def copy_premirrors_dl(dest):
         logger.plain("Copying %s" % premirrors_dl)
     else:
         return
-    cmd = "cp --parent -a".split()
-    if os.stat(premirrors_dl).st_dev == os.stat(dest).st_dev:
-        # Hard link when possible
-        cmd.append("-l")
+    # Dereference symlink since the checked out dl layers are gone after flatten
+    cmd = "cp --parent -aL".split()
     cmd += [premirrors_dl, dest]
     utils_setup.run_cmd(cmd)
 
