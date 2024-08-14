@@ -95,8 +95,12 @@ class Setup():
         self.distros = [ settings.DEFAULT_DISTRO ]
         self.machines = [ settings.DEFAULT_MACHINE ]
         self.layers = []
+        # The dl layers specified by --layers
+        self.specified_dl_layers = set()
         self.recipes = []
         self.wrtemplates = []
+
+        self.processed_dl_layers = set()
 
         self.all_layers = False
         self.dl_layers = -1
@@ -586,6 +590,11 @@ class Setup():
                 recipe = None
                 wrtemplate = None
 
+            if layer and utils_setup.is_dl_layer(layer):
+                xmlfile = os.path.join(self.xml_dir, '%s.xml' % layer)
+                if os.path.exists(xmlfile):
+                    self.specified_dl_layers.add(layer)
+                    return True
             # TODO: We do not actually verify the item we asked for (if a layer was specified) is available
             found = False
             for lindex in self.index.index:
@@ -1191,6 +1200,17 @@ class Setup():
                 if bt:
                     self.xml_lines_out.append(add_xml_tag('buildtools', bt, 'base', bt, self.buildtools_branch))
 
+        def process_specified_dl_layers(specified_dl_layers):
+            """
+            Process dl layers specified by --layers
+            """
+            if not specified_dl_layers:
+                return
+            for sdl in specified_dl_layers:
+                xmlfile = os.path.join(self.xml_dir, '%s.xml' % sdl)
+                with open(xmlfile) as f:
+                    self.xml_lines_out += f.readlines()
+
         def process_xml_layers(allLayers):
             def get_cache_entry(name, remote, path, revision):
                 return {
@@ -1200,15 +1220,13 @@ class Setup():
                        'revision' : revision,
                     }
 
-            processed_dl_layers = set()
-
             # Add recommended dl layers from json file when needed
             def process_dl_layer(layername, url, remote):
                 for dl_name in self.get_dl_layers_from_json(layername):
-                    if dl_name in processed_dl_layers:
+                    if dl_name in self.processed_dl_layers:
                         continue
                     else:
-                        processed_dl_layers.add(dl_name)
+                        self.processed_dl_layers.add(dl_name)
 
                     path = 'layers/' + dl_name
                     entry = get_cache_entry(dl_name, remote, path, self.base_branch)
@@ -1311,6 +1329,8 @@ class Setup():
         allLayers = self.requiredlayers + self.recommendedlayers
 
         process_xml_layers(allLayers)
+
+        process_specified_dl_layers(self.specified_dl_layers - self.processed_dl_layers)
 
         # process the remote layers
         for remote_layer in self.remote_layers:
