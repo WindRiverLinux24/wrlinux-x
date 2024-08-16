@@ -206,11 +206,17 @@ def is_dl_layer(layername):
 def create_symlinks(srclist, destdir):
     import glob
     saved_cwd = os.getcwd()
+    destdir_abspath = os.path.abspath(destdir)
     try:
         os.chdir(destdir)
         for wildcard in srclist:
             files = glob.glob(wildcard)
             for f in files:
+                # Skip the one in destdir itself
+                f_abspath = os.path.abspath(f)
+                if f_abspath.startswith(destdir_abspath):
+                    logger.debug('Skipping %s' % f_abspath)
+                    continue
                 dst = os.path.basename(f)
                 if not os.path.exists(dst):
                     os.symlink(f, dst)
