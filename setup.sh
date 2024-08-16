@@ -299,6 +299,24 @@ if [ $help -ne 1 ]; then
 		fi
 	fi
 
+	if ! (git config --get-all safe.directory | grep "^\*$" 2>&1 >/dev/null) \
+		&& ([[ "$REMOTEURL" = /* ]] || [[ "$REMOTEURL" = "file://"* ]]);then
+		remote_url=$REMOTEURL
+		if [[ "$remote_url" = "file://"* ]]; then
+			remote_url=${remote_url:7}
+		fi
+
+		current_user_euid=$(id -u)
+		remoteurl_owner_euid=$(stat -c %u $remote_url)
+		if [ "$current_user_euid" != "$remoteurl_owner_euid" ];then
+			echo "ERROR: git cannot access directories owned by someone other than the current." >&2
+			echo "ERROR: You need run the following command to avoid setup failures:" >&2
+			echo "ERROR: $ git config --global --add safe.directory \"*\"" >&2
+			echo "ERROR: Refer: https://github.com/git/git/commit/f4aa8c8bb11dae6e769cd930565173808cbb69c8" >&2
+			exit 1
+		fi
+	fi
+
 	for func in "${ADDFUNCS[@]}"; do
 		$func
 		rc=$?
@@ -317,6 +335,7 @@ if [ $help -ne 1 ]; then
 	add_gitconfig "color.status" "false"
 	add_gitconfig "http.proxyauthmethod"
 	add_gitconfig "http.proxy"
+	add_gitconfig "safe.directory"
 fi # if help -ne 1
 
 # We potentially have code that doesn't parse correctly with older versions 
