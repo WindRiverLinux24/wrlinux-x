@@ -1,0 +1,1 @@
+    <project name="layers/intel-socfpga-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/intel-socfpga-gitshallow-dl"/>
