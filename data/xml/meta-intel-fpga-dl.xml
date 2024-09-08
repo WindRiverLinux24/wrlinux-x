@@ -1,0 +1,1 @@
+    <project name="layers/meta-intel-fpga-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-intel-fpga-gitshallow-dl"/>
