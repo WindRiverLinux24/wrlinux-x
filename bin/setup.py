@@ -1355,13 +1355,9 @@ class Setup():
 
             self.xml_lines_out.append(add_xml_tag(name, url, remote, path, revision))
 
-        # Sort by path like repo does
-        def get_xml_path(xml_line):
-            root = ET.fromstring(xml_line)
-            return root.attrib['path']
         # Remove duplicates
         self.xml_lines_out = list(set(self.xml_lines_out))
-        self.xml_lines_out.sort(key=get_xml_path)
+        self.xml_lines_out.sort(key=self.get_xml_path)
 
         # Make the larger one download earlier
         large_lines = []
@@ -1684,6 +1680,41 @@ class Setup():
 
         logger.debug('Done')
 
+    # Sort by path like repo does
+    def get_xml_path(self, xml_line):
+        root = ET.fromstring(xml_line)
+        return root.attrib['path']
+
+    def remove_obsoleted_dl_repos(self, old_xml, new_xml):
+        need_remove = set()
+        with open(old_xml) as f:
+            old = f.readlines()
+        with open(new_xml) as f:
+            new = f.readlines()
+        for line in old:
+            if not line in new:
+                line.strip()
+                if '<project name=' in line:
+                    need_remove.add(line)
+        for line in need_remove:
+            path = self.get_xml_path(line)
+            # Remove the clean local dl layer to replace with new one.
+            # Only remove it when it is clean, otherwise, report errors to
+            # ask user to run with '--repo-force-sync'
+            if os.path.exists(path) and utils_setup.is_dl_layer(path):
+                cmd = [self.tools['git'], 'status', '--porcelain']
+                dirty = subprocess.check_output(cmd, cwd=path)
+                cmd = [self.tools['git'], 'diff-index', 'm/master']
+                commit = subprocess.check_output(cmd, cwd=path)
+                if not (dirty or commit):
+                    path_git = os.path.join(path, '.git')
+                    path_git_real = os.path.realpath(path_git)
+                    logger.info('Removing obsoleted clean dl layer %s' % path)
+                    shutil.rmtree(path)
+                    if os.path.exists(path_git_real):
+                        logger.info('Removing obsoleted clean dl layer %s' % path_git_real)
+                        shutil.rmtree(path_git_real)
+
     def repo_sync(self):
         if self.repo_no_fetch:
             logger.info('Skipping repo sync')
@@ -1703,6 +1734,8 @@ class Setup():
             # Re-init when needed
             if os.path.exists(default_xml_manifest):
                 if not filecmp.cmp(self.default_xml, default_xml_manifest):
+                    if not self.mirror:
+                        self.remove_obsoleted_dl_repos(default_xml_manifest, self.default_xml)
                     self.call_repo_init(first_init=False)
             else:
                 self.call_repo_init(first_init=False)
