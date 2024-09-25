@@ -1693,8 +1693,9 @@ class Setup():
             new = f.readlines()
         for line in old:
             if not line in new:
-                line.strip()
-                if '<project name=' in line:
+                line = line.strip()
+                # Check '/>' to skip old style default.xml.
+                if '<project name=' in line and line.endswith('/>'):
                     need_remove.add(line)
         for line in need_remove:
             path = self.get_xml_path(line)
