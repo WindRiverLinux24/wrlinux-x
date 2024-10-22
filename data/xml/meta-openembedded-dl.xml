@@ -1,2 +1,3 @@
     <project name="layers/meta-openembedded-dl-5.0" remote="base" path="layers/meta-openembedded-dl"/>
     <project name="layers/meta-openembedded-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-openembedded-gitshallow-dl"/>
+    <project name="external/yocto/github.com.marzer.tomlplusplus" remote="base" path="layers/wrlinux-src-dl/git/github.com.marzer.tomlplusplus.git" bare="True"/>
