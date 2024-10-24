@@ -1192,6 +1192,14 @@ class Setup():
                 if os.path.exists(xmlfile):
                     fbase = open(xmlfile, 'r')
                     for line in fbase:
+                        if self.mirror != True and not self.dl_layers in (-1, 0):
+                            et = ET.fromstring(line)
+                            path = os.path.basename(et.attrib['path'])
+                            if utils_setup.is_dl_layer(path):
+                                et.attrib['clone-depth'] = '%d' %  self.dl_layers
+                                line = ET.tostring(et, encoding='unicode')
+                                # Remove an extra space and append '\n'
+                                line = '    %s' % line.replace(' />',  '/>\n')
                         self.xml_lines_out.append(line)
                     fbase.close()
 
