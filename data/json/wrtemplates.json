@@ -7,6 +7,12 @@
       ]
     },
     {
+      "name": "feature/bpftrace",
+      "layer_dependencies": [
+        "meta-clang"
+      ]
+    },
+    {
       "name": "feature/buildah",
       "require": [
         "feature/podman"
@@ -95,6 +101,12 @@
       "name": "feature/installer-support",
       "layer_dependencies": [
         "meta-anaconda"
+      ]
+    },
+    {
+      "name": "feature/intel-x86-dev",
+      "require": [
+        "feature/tpm2"
       ]
     },
     {
