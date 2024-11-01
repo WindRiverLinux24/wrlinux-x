@@ -1,2 +1,2 @@
     <project name="layers/wr-sbom-dl-5.0.2" remote="base" path="layers/wr-sbom-dl"/>
-    <project name="layers/wr-sbom-gitshallow-dl-5.0.1" remote="base" path="layers/wrlinux-src-dl/wr-sbom-gitshallow-dl"/>
+    <project name="layers/wr-sbom-gitshallow-dl-5.0.2" remote="base" path="layers/wrlinux-src-dl/wr-sbom-gitshallow-dl"/>
