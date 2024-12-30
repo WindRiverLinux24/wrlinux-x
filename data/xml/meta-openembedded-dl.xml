@@ -1,3 +1,4 @@
     <project name="layers/meta-openembedded-dl-5.0" remote="base" path="layers/meta-openembedded-dl"/>
     <project name="layers/meta-openembedded-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/meta-openembedded-gitshallow-dl"/>
     <project name="external/yocto/gitlab.com.libosinfo.libosinfo" remote="base" path="layers/wrlinux-src-dl/git/gitlab.com.libosinfo.libosinfo.git" bare="True"/>
+    <project name="external/yocto/gitlab.com.libosinfo.osinfo-db" remote="base" path="layers/wrlinux-src-dl/git/gitlab.com.libosinfo.osinfo-db.git" bare="True"/>
