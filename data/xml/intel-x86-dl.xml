@@ -1,0 +1,1 @@
+    <project name="layers/intel-x86-gitshallow-dl-5.0" remote="base" path="layers/wrlinux-src-dl/intel-x86-gitshallow-dl"/>
