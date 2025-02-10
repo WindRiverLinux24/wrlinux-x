@@ -328,3 +328,6 @@ require wrlinux-distro/conf/distro/include/wrlinux-uninative.inc
 
 # Exclude buildtools dir from pseudo database to fix do_package failure
 PSEUDO_IGNORE_PATHS .= ",##OEROOT##/bin"
+
+# Comment the following line to do sanity check for security config
+SKIP_META_SECURITY_SANITY_CHECK ?= "1"
