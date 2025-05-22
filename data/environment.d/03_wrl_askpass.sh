@@ -70,6 +70,10 @@ askpass_setup() {
 		if [ -n "${WINDSHARE_USER}" ]; then
 			echo "${WINDSHARE_USER}" | ${BASEDIR}/data/environment.d/setup_askpass --set "Username for '${WINDSHARE_SCHEME}://${WINDSHARE_HOST}': " > /dev/null
 			echo "${WINDSHARE_PASS}" | ${BASEDIR}/data/environment.d/setup_askpass --set "Password for '${WINDSHARE_SCHEME}://${WINDSHARE_USER}@${WINDSHARE_HOST}': " "${WINDSHARE_PASS}" > /dev/null
+			ENCODED_WINDSHARE_USER=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${WINDSHARE_USER}'))")
+			ENCODED_WINDSHARE_HOST=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${WINDSHARE_HOST}'))")
+			echo "${WINDSHARE_USER}" | ${BASEDIR}/data/environment.d/setup_askpass --set "Username for '${WINDSHARE_SCHEME}://${ENCODED_WINDSHARE_HOST}': " > /dev/null
+			echo "${WINDSHARE_PASS}" | ${BASEDIR}/data/environment.d/setup_askpass --set "Password for '${WINDSHARE_SCHEME}://${ENCODED_WINDSHARE_USER}@${ENCODED_WINDSHARE_HOST}': " "${WINDSHARE_PASS}" > /dev/null
 		fi
 
 		if [ ${WINDSHARE_SCHEME} = "ssh" -a -n "${WINDSHARE_PASS}" ]; then
