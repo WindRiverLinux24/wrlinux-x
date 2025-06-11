@@ -168,10 +168,13 @@ parse_arguments() {
 check_using_buildtools_cert() {
     for arg in "$@" ; do
         if [ "$arg" = "--use-buildtools-cert" ]; then
-            eval USE_BUILDTOOLS_CERT=true
+			echo "WARNING: Option --use-buildtools-cert is dropped, the buildtools"
+			echo "WARNING: will use host CA certificates by default. If host CA"
+			echo "WARNING: certificates not found, the ones in buildtools will be used."
         fi
     done
 }
+
 
 trap shutdown_handler INT
 
@@ -182,6 +185,7 @@ BASEDIR=$(readlink -f "$(dirname "$0")")
 # Argument parsing, define a limited set of args
 setup_add_arg --base-url BASEURL keep
 setup_add_arg --base-branch BASEBRANCH keep
+setup_add_arg --use-buildtools-cert USE_BT_CERT
 
 help=0
 parse_arguments "$@"
