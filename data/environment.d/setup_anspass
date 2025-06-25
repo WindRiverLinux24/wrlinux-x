@@ -115,6 +115,26 @@ anspass_start() {
 	return 0
 }
 
+check_if_start_anspass() {
+	if [ -d ${PWD}/bin/.anspass ]; then
+		old_bt_version=$(readlink -f $BUILDTOOLS | awk -F- '{print $NF}')
+		current_bt_version=$BUILDTOOLS_VERSION
+		critial_bt_version="10.24.33.0"
+
+		# old buildtools version <= 10.24.33.0 and current buildtools version > 10.24.33.0
+		if [[ "$(printf '%s\n' "$old_bt_version" "$critial_bt_version" | sort -V | head -n1)" == "$old_bt_version" ]] &&
+			[[ "$(printf '%s\n' "$current_bt_version" "$critial_bt_version" | sort -V | tail -n1)" == "$current_bt_version" && "$current_bt_version" != "$critial_bt_version" ]]; then
+			#clean old database
+			echo "The old anspass is invalid now, removing it."
+			rm -rf ${PWD}/bin/.anspass
+			return 1
+		fi
+	else
+		return 1
+	fi
+
+	return 0
+}
 
 anspass_setup() {
 	# Do we have anspassd available yet?
@@ -133,7 +153,7 @@ anspass_setup() {
 	fi
 
 	# Has anspass been started before?
-	if [ -d ${PWD}/bin/.anspass ]; then
+	if check_if_start_anspass; then
 		anspass_start
 		rc=$?
 		if [ $rc != 0 ]; then

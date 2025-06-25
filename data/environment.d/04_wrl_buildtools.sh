@@ -18,11 +18,15 @@
 BUILDTOOLS_VERSION=${BUILDTOOLS_VERSION:-10.24.33.10}
 BUILDTOOLS_EXT_VERSION=${BUILDTOOLS_EXT_VERSION:-10.24.33.10}
 
+export BUILDTOOLS_VERSION
+
 # Special windshare folders to search
 BUILDTOOLS_FOLDERS="WRLinux-lts-24-Core"
 
 # Where to install the build tools
 BUILDTOOLS="${BUILDTOOLS:-bin/buildtools}"
+
+export BUILDTOOLS
 
 # Arch of the SDK to load
 SDKARCH=${SDKARCH:-$(uname -m)}
