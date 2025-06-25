@@ -40,7 +40,7 @@ CMD="bin/setup.py"
 
 # Adds arguments to the arg processing
 #   1 - argument
-#   2 - variable to define
+#   2 - variable to define, NOARG means this option don't take an argument
 #   3 - keep or discard (if defined, keep)
 #       there may be arguments you don't want passed to the .py script
 setup_add_arg() {
@@ -136,7 +136,9 @@ parse_arguments() {
 					break
 					;;
 				${comp})
-					eval ${val}=\${2}
+					if [ "$val" != "NOARG" ];then
+						eval ${val}=\${2}
+					fi
 					if [ -n "${keep}" ]; then
 						PASSARGS[${#PASSARGS[@]}]="$1"
 						# Only check whether $2 is set or not, set to "" or '--foo'
@@ -151,7 +153,11 @@ parse_arguments() {
 					if [ -z "${2+x}" ]; then
 						shift 1
 					else
-						shift 2
+						if [ "$val" != "NOARG" ];then
+							shift 2
+						else
+							shift 1
+						fi
 					fi
 					found=1
 					break
@@ -185,7 +191,7 @@ BASEDIR=$(readlink -f "$(dirname "$0")")
 # Argument parsing, define a limited set of args
 setup_add_arg --base-url BASEURL keep
 setup_add_arg --base-branch BASEBRANCH keep
-setup_add_arg --use-buildtools-cert USE_BT_CERT
+setup_add_arg --use-buildtools-cert NOARG
 
 help=0
 parse_arguments "$@"
