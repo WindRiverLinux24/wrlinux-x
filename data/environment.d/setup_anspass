@@ -116,7 +116,7 @@ anspass_start() {
 }
 
 check_if_start_anspass() {
-	if [ -d ${PWD}/bin/.anspass ]; then
+	if [ -d ${PWD}/bin/.anspass ] && [ -n "$(ls -A ${PWD}/bin/.anspass) >/dev/null 2>&1" ]; then
 		old_bt_version=$(readlink -f $BUILDTOOLS | awk -F- '{print $NF}')
 		current_bt_version=$BUILDTOOLS_VERSION
 		critial_bt_version="10.24.33.0"
